@@ -1,0 +1,17 @@
+{
+  "name": "mapping",
+  "version": "1.0.0",
+  "description": "## Steps 1. Authenticate using four tokens. 2. Create a live streaming listener using Tweepy. 3. Save data in two formats simultaneously: \ta. Use `data` parameter and save as `JSON`. \tb. Use `status` parameter and save as `txt`.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^4.12.2",
+    "json-2-csv": "^2.1.2",
+    "twit": "^2.2.9",
+    "twitter": "^1.7.1"
+  }
+}

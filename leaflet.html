@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Map of New York Neighboorhoods</title>
+	<link rel="stylesheet" href="./main.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+	integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+	crossorigin=""></script>
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>	
+   <style>
+	body { margin:0; padding:0; }
+	#map { position:absolute; top:0; bottom:0; width:100%; }
+	</style>
+</head>
+<body>
+<style>
+	.mapboxgl-popup {
+		max-width: 400px;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	}
+</style>	
+<div id="map"></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0Od7n9c17-jouVVYbaMWOsg';
+
+var mymap = L.map('map').setView([40.7243, -74.0018], 11);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery© <a href="http://mapbox.com">Mapbox</a>',
+   maxZoom: 18,
+   id: 'mapbox.streets',
+accessToken:'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg'
+}).addTo(mymap);
+var district_boundary = new L.geoJson();
+district_boundary.addTo(mymap);
+$.ajax({
+	dataType: "json",
+	url: "./nyc-neighborhoods-tab.geojson",
+	success: function(data) {
+    	$(data.features).each(function(key, data) {
+        	district_boundary.addData(data);
+    });
+}
+}).error(function() {});
+
+map.on('load', function() {
+
+// Add a layer showing the places.
+
+
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+	closeButton: false,
+	closeOnClick: false
+});
+
+map.on('mouseenter', 'places', function(e) {
+	// Change the cursor style as a UI indicator.
+	map.getCanvas().style.cursor = 'pointer';
+
+	// Populate the popup and set its coordinates
+	// based on the feature found.
+	popup.setLngLat(e.features[0].geometry.coordinates)
+		.setHTML(e.features[0].properties.description)
+		.addTo(map);
+});
+
+map.on('mouseleave', 'places', function() {
+	map.getCanvas().style.cursor = '';
+	popup.remove();
+});
+});
+
+</script>
+</body>
+</html>

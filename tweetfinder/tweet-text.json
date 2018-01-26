@@ -1,0 +1,14 @@
+[
+	{
+		"city": "New York",
+		"tweets": ["alpha", "bravo"]
+	},
+	{
+		"city": "Los Angeles",
+		"tweets": ["charlie", "delta"]
+	},
+	{
+		"city": "Chicago",
+		"tweets": ["echo", "foxtrot"]
+	}
+][][][][]

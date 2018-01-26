@@ -1,0 +1,8 @@
+"city","tweets"
+"New York","[alpha;bravo]"
+"Los Angeles","[charlie;delta]"
+"Chicago","[echo;foxtrot]"
+Error: The field and array delimiters must differ."city","tweets"
+"New York","[alpha;bravo]"
+"Los Angeles","[charlie;delta]"
+"Chicago","[echo;foxtrot]"
