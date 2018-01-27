@@ -1,16 +1,11 @@
-# Mapping Project
+# Untitled Mapping Project
 ## Features
 * Bike parking
 * Bike routes
-* Neighborhood markings
-## TODO
-- BUTTONS:
-	- bicycle route layer
-	- bike parking layer
-	- show/hide neighborhood boundaries and bike routes
-		- HOVER over polygon show hood name
-	- popup small box of information
-- MODAL: 'about this project', 'contact'
+* Neighborhood boundaries
+---
+## Transit Information
+
 ---
 ## Hyperlocal Information
 ### News

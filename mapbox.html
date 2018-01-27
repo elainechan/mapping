@@ -2,20 +2,18 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Get features under the mouse pointer</title>
+    <title>Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
+	<!--Mapbox API--><script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+	<!--jQuery API--><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--Leaflet API--><script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	<!--Mapbox Stylesheet--><link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
 
 <style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
 #features {
     position: absolute;
     top: 0;
@@ -27,7 +25,6 @@
 }
 #map canvas {
     cursor: crosshair;
-    z-index: 0;
 }
 #menu {
     position: absolute;
@@ -39,13 +36,13 @@
 max-width: 400px;
 font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+/* Toggle buttons */
 ul, li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .tg-list {
-  z-index: 1;
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,6 +52,7 @@ ul, li {
           align-items: center;
 }
 .tg-list-item {
+  z-index: 3 !important;
   margin: 0 2em;
 }
 .tgl {
@@ -115,6 +113,7 @@ ul, li {
   background: #9FD6AE;
 }
 </style>
+
 <div id='toggle-buttons'>
 <ul class='tg-list'>  
   <li class='tg-list-item'>
@@ -133,15 +132,19 @@ ul, li {
     <label class="tgl-btn" for="cb3"></label>
   </li>
 </ul>
-</div>
+</div><!--#toggle-buttons-->
+
 <div id='map'></div>
+
 <div id='menu'>
     <input id='basic' type='radio' name='rtoggle' value='cjcwu6mu80jrv2rpgqf1myynv' checked='checked'>
     <label for='basic'>basic</label>
     <input id='bike-parking' type='radio' name='rtoggle' value='cjcwu8bws0jf52sqq8ok0b7yq'>
     <label for='bike-parking'>bike parking</label>
-</div>
+</div><!--#menu-->
+
 <pre id='features'></pre>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg';
 var map = new mapboxgl.Map({
@@ -176,7 +179,7 @@ map.on('click', () => {
         }
     });
 });
-
+// Show popup on click (NOT WORKING)
 map.on('click', 'hoods-layer', function (e) {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
@@ -195,7 +198,6 @@ map.on('mousemove', function (e) {
 	
 	document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
 });
-
 </script>
 </body>
 </html>
