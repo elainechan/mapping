@@ -19,6 +19,7 @@
 - [Using Tilemaker to creat MVT vector tiles](http://gdunlop.github.io/Vector-tiles-remixed/)
 - [Tilemaker](https://github.com/systemed/tilemaker): convert `.osm.pbf` to `.mvt`
 - [Mapbox Vector Tiles Specifications](https://github.com/mapbox/vector-tile-spec/tree/master/2.1)
+- [Another source: OpenMaptiles Custom Vector Tiles from GeoJSON or ShapeFile](https://openmaptiles.org/docs/generate/custom-vector-from-shapefile-geojson/)
 #### Uploading shapefile to tilesets on Mapbox Studio
 - [Access](https://www.mapbox.com/studio/tilesets/)
 - Bike parking tileset: chanversus.8frqupzv

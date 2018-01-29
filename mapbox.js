@@ -9,13 +9,13 @@ var map = new mapboxgl.Map({
 map.on('load', function () {
     map.addSource('bike-routes', {
         type: 'vector',
-        url: 'mapbox://tilesets/chanversus.b4y2ijie'
+        url: 'mapbox://chanversus.b4y2ijie'
     });
     map.addLayer({
         'id': 'bike-routes',
         'type': 'line',
         'source': 'bike-routes',
-        'source-layer': 'bike-routes',
+        'source-layer': 'nyc-bike-routes-2e7vkb',
         'layout': {
             'visibility': 'visible'
         },
@@ -27,13 +27,13 @@ map.on('load', function () {
 
     map.addSource('bike-parking', {
         type: 'vector',
-        url: 'mapbox://tilesets/chanversus.40louhe4'
+        url: 'mapbox://chanversus.40louhe4'
     });
     map.addLayer({
         'id': 'bike-parking',
         'type': 'circle',
         'source': 'bike-parking',
-        'source-layer': 'bike-parking',
+        'source-layer': '2013-cityracks-shp-avydea',
     });
 });
 var toggleableLayerIds = [ 'bike-routes', 'bike-parking' ];
