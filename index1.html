@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<!--Mapbox API--><script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+	<!--jQuery API--><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--Leaflet API--><script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	<!--Mapbox Stylesheet--><link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+#features {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.7);
+}
+#map canvas {
+    cursor: crosshair;
+}
+#menu {
+    position: absolute;
+    background: #fff;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+/* Toggle buttons */
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tg-list {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.tg-list-item {
+  z-index: 3 !important;
+  margin: 0 2em;
+}
+.tgl {
+  display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+.tgl-btn {
+  background: #f0f0f0;
+  border-radius: 2em;
+  padding: 2px;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+.tgl-btn:after {
+  border-radius: 50%;
+  background: #fff;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+.tgl:checked + .tgl-btn {
+  background: #9FD6AE;
+}
+</style>
+
+<div id='toggle-buttons'>
+<ul class='tg-list'>  
+  <li class='tg-list-item'>
+    <h4>Bike Parking</h4>
+    <input class="tgl tgl-bike-parking" id="cb1" type="checkbox"/>
+    <label class="tgl-btn" for="cb1"></label>
+  </li>
+  <li class='tg-list-item'>
+    <h4>Bike Routes</h4>
+    <input class="tgl tgl-bike-routes" id="cb2" type="checkbox"/>
+    <label class="tgl-btn" for="cb2"></label>
+  </li>
+  <li class='tg-list-item'>
+    <h4>Neighborhood Boundaries</h4>
+    <input class="tgl tgl-neighborhood-boundaries" id="cb3" type="checkbox"/>
+    <label class="tgl-btn" for="cb3"></label>
+  </li>
+</ul>
+</div><!--#toggle-buttons-->
+
+<div id='map'></div>
+
+<div id='menu'>
+    <input id='basic' type='radio' name='rtoggle' value='cjcwu6mu80jrv2rpgqf1myynv' checked='checked'>
+    <label for='basic'>basic</label>
+    <input id='bike-parking' type='radio' name='rtoggle' value='cjcwu8bws0jf52sqq8ok0b7yq'>
+    <label for='bike-parking'>bike parking</label>
+</div><!--#menu-->
+
+<pre id='features'></pre>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
+    center: [-74.0018, 40.7243],
+    zoom: 10
+});
+// Check radio button to show chosen style
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
+function switchLayer(layer) {
+    var layerValue = layer.target.value;
+    map.setStyle(`mapbox://styles/chanversus/${layerValue}`);
+}
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
+// Click map to show shaded hoods
+map.on('click', () => {
+	map.addSource('hoods', {
+        'type': 'geojson',
+        'data': './nyc-neighborhoods-tab.geojson'
+	});
+	map.addLayer({
+        'id': 'hoods-layer',
+        'type': 'fill',
+        'source': 'hoods',
+        'paint': {
+            'fill-color': 'rgba(200, 100, 240, 0.4)',
+            'fill-outline-color': 'rgba(200, 100, 240, 1)'
+        }
+    });
+});
+// Show popup on click (NOT WORKING)
+map.on('click', 'hoods-layer', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(e.features[0].properties.name)
+            .addTo(map);
+});
+
+// Hover to show features in panel
+map.on('mousemove', function (e) {
+	var features = map.queryRenderedFeatures(e.point);
+	
+	if (JSON.stringify(features, null, 2).length > 1 && JSON.stringify(features, null, 2)[0].properties) {
+		var name = JSON.stringify(features, null, 2)[0].properties.name;
+		if (name) console.log(name);
+	}
+	
+	document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
+});
+</script>
+</body>
+</html>
