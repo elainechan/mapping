@@ -21,6 +21,7 @@
 - [Tilemaker](https://github.com/systemed/tilemaker): convert `.osm.pbf` to `.mvt`
 - [Mapbox Vector Tiles Specifications](https://github.com/mapbox/vector-tile-spec/tree/master/2.1)
 - [Another source: OpenMaptiles Custom Vector Tiles from GeoJSON or ShapeFile](https://openmaptiles.org/docs/generate/custom-vector-from-shapefile-geojson/)
+- Bonus: [Instructions for making custom icon sprite sheet](https://github.com/mapbox/mapbox-gl-js/issues/822)
 #### Mapbox GL: Adding Vector Tile Layers Using Custom Tilesets
 - [Access Tilesets](https://www.mapbox.com/studio/tilesets/)
 	- Bike parking tileset: chanversus.8frqupzv
