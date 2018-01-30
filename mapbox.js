@@ -35,8 +35,19 @@ map.on('load', function () {
         'source': 'bike-parking',
         'source-layer': '2013-cityracks-shp-avydea',
     });
+
+    map.addSource('hood-boundaries', {
+        type: 'vector',
+        url: 'mapbox://chanversus.3eevjveq'
+    });
+    map.addLayer({
+        'id': 'hood-boundaries',
+        'type': 'line',
+        'source': 'hood-boundaries',
+        'source-layer': 'Neighborhood_Tabulation_Areas-095e1p',
+    });
 });
-var toggleableLayerIds = [ 'bike-routes', 'bike-parking' ];
+var toggleableLayerIds = [ 'bike-routes', 'bike-parking', 'hood-boundaries' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
@@ -66,14 +77,6 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     layers.appendChild(link);
 }
 
-// Show popup on click (NOT WORKING)
-map.on('click', 'hoods-layer', function (e) {
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.name)
-            .addTo(map);
-});
-
 // Hover to show features in panel
 map.on('mousemove', function (e) {
 	var features = map.queryRenderedFeatures(e.point);
@@ -85,7 +88,7 @@ map.on('mousemove', function (e) {
 	document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
 });
 
-// Request Citibike data
+// Request Citibike data (WORKS)
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -95,12 +98,3 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_status.json', true);
 xmlhttp.send();
-
-shapefile.open('./nyc-bike-routes/nyc_bike_routes_20170707.shp', './nyc-bike-routes/nyc_bike_routes_20170707.dbf', null)
-  .then(function(source) {
-		var routes = source.read();
-		console.log(routes.value);
-  })
-  .catch(function(error) {
-    console.error(error.stack);
-  });
