@@ -20,8 +20,8 @@ map.on('load', function () {
             'visibility': 'visible'
         },
         'paint': {
-            'line-color': '#877b59',
-            'line-width': 5
+            'line-color': '#FF33F0',
+            'line-width': 3
         },
     });
 
@@ -34,6 +34,9 @@ map.on('load', function () {
         'type': 'circle',
         'source': 'bike-parking',
         'source-layer': '2013-cityracks-shp-avydea',
+        'paint': {
+            'circle-color': '#3342FF'
+        }
     });
 
     map.addSource('hood-boundaries', {
@@ -45,6 +48,10 @@ map.on('load', function () {
         'type': 'line',
         'source': 'hood-boundaries',
         'source-layer': 'Neighborhood_Tabulation_Areas-095e1p',
+        'paint': {
+            'line-color': '#991126',
+            'line-width': 1
+        }
     });
 });
 var toggleableLayerIds = [ 'bike-routes', 'bike-parking', 'hood-boundaries' ];

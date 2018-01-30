@@ -20,11 +20,15 @@
 - [Tilemaker](https://github.com/systemed/tilemaker): convert `.osm.pbf` to `.mvt`
 - [Mapbox Vector Tiles Specifications](https://github.com/mapbox/vector-tile-spec/tree/master/2.1)
 - [Another source: OpenMaptiles Custom Vector Tiles from GeoJSON or ShapeFile](https://openmaptiles.org/docs/generate/custom-vector-from-shapefile-geojson/)
-#### Uploading shapefile to tilesets on Mapbox Studio
+#### Mapbox GL: Adding Vector Tile Layers Using Custom Tilesets
 - [Access](https://www.mapbox.com/studio/tilesets/)
-- Bike parking tileset: chanversus.8frqupzv
-- Bike routes tileset: chanversus.b4y2ijie
-- Neighborhood tabulation area: chanversus.3eevjveq
+	- Bike parking tileset: chanversus.8frqupzv
+	- Bike routes tileset: chanversus.b4y2ijie
+	- Neighborhood tabulation area: chanversus.3eevjveq
+- Create a new tileset on [Tilesets](https://www.mapbox.com/studio/tilesets/) page.
+- Upload shapefile. This will take a minute or two to load.
+- Use the Map ID to fill in `url` field in `addSource
+- When using `addLayer` to build the tile layer in Mapbox GL, remember to use the Layer information found on [this page](https://www.mapbox.com/help/define-source-layer/) to enter the correct data in `source-layer` field
 ### Deep object reference
 - When you are getting errors:
 	- continue to test that each stage is there
