@@ -1,10 +1,11 @@
 # Project Notes
 ## TODO
 - Toggle buttons SHOW/HIDE:
-	- [ ] bicycle route layer
-	- [ ] bike parking layer
-	- [ ] neighborhood boundaries layer
-- [ ] Tooltip containing location information on HOVER over polygon
+	- [x] bicycle route layer
+	- [x] bike parking layer
+	- [x] neighborhood boundaries layer
+	- [x] public benches
+- [x] Tooltip containing location metadata on click
 - [ ] MODAL: 'about this project', 'contact'
 
 ## Current Processes
@@ -21,7 +22,7 @@
 - [Mapbox Vector Tiles Specifications](https://github.com/mapbox/vector-tile-spec/tree/master/2.1)
 - [Another source: OpenMaptiles Custom Vector Tiles from GeoJSON or ShapeFile](https://openmaptiles.org/docs/generate/custom-vector-from-shapefile-geojson/)
 #### Mapbox GL: Adding Vector Tile Layers Using Custom Tilesets
-- [Access](https://www.mapbox.com/studio/tilesets/)
+- [Access Tilesets](https://www.mapbox.com/studio/tilesets/)
 	- Bike parking tileset: chanversus.8frqupzv
 	- Bike routes tileset: chanversus.b4y2ijie
 	- Neighborhood tabulation area: chanversus.3eevjveq
@@ -47,8 +48,9 @@
 - [Add on/off text to toggle (Stackoverflow)](https://stackoverflow.com/questions/39846282/how-to-add-the-text-on-and-off-to-toggle-button)
 - [ARIA notes on toggles](https://inclusive-components.design/toggle-button/)
 ## Geodata Management
-- [Shapefile to GeoJSON (GitHub)](https://github.com/mbostock/shapefile)
+- [Shapefile (GitHub)](https://github.com/mbostock/shapefile)
 - [Streaming Shapefile, Bostock](https://bl.ocks.org/mbostock/2dd741099154a4da55a7db31fd96a892)
+- [[Old] From Shapefile to GeoJSON, Vallandingham](http://vallandingham.me/shapefile_to_geojson.html)
 ## Animation
 - [Pan map to location (OpenLayers)](https://openlayers.org/en/latest/examples/animation.html)
 ## Subway Transit Data by Google
@@ -68,7 +70,24 @@
 - [Line Simplification, Mike Bostock](https://bost.ocks.org/mike/simplify/)
 ---
 ## Backlog Issues
-### Twitter data fetch
+### Consuming Twitter and FourSquare APIs
+[Blog Post on Twitter GET](http://elainechan.nyc/twitter-api/)
+#### Collecting Twitter Data
+* Write to file with .get tweets passing params
+* Refine search to make sure we're getting 'valid' tweets
+* Parse those results for data
+* Within this time range, in this geo location, matching this query, how many tweets are there?
+##### Tweepy Streaming Steps
+1. Authenticate using four tokens.
+2. Create a live streaming listener.
+3. Save data in two formats simultaneously:
+	a. Use `data` parameter and save as `JSON`.
+	b. Use `status` parameter and save as `txt`.
+##### Node Twitter
+- [Node Twitter Repo](https://github.com/desmondmorris/node-twitter)
+#### Collecting FourSquare Data
+- [FourSquare API](https://developer.foursquare.com/)
+#### Twitter data fetch
 page=1
 result=[]
 page=100
@@ -80,10 +99,6 @@ impossible: (you ask for page 1, 50 results per page, it gives you a full array)
 
 "take a look at some example tweets"
 sentiment analysis week by week
-
-curl https://api.twitter.com/1.1/search/tweets.json?
-
-q='to%3ANASA&tweet_mode=extended'
 
 Twitter search API
 15 requests in 15 minutes

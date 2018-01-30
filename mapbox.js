@@ -39,22 +39,35 @@ map.on('load', function () {
         }
     });
 
-    map.addSource('hood-boundaries', {
+    map.addSource('neighborhoods', {
         type: 'vector',
         url: 'mapbox://chanversus.3eevjveq'
     });
     map.addLayer({
-        'id': 'hood-boundaries',
+        'id': 'neighborhoods',
         'type': 'line',
-        'source': 'hood-boundaries',
+        'source': 'neighborhoods',
         'source-layer': 'Neighborhood_Tabulation_Areas-095e1p',
         'paint': {
-            'line-color': '#991126',
-            'line-width': 1
+            'line-color': '#991126'
+        }
+    });
+
+    map.addSource('public-benches', {
+        type: 'vector',
+        url: 'mapbox://chanversus.bal31raj'
+    });
+    map.addLayer({
+        'id': 'public-benches',
+        'type': 'symbol',
+        'source': 'public-benches',
+        'source-layer': '2016-citybench-401mrx',
+        'layout': {
+            'icon-image': 'triangle-15',
         }
     });
 });
-var toggleableLayerIds = [ 'bike-routes', 'bike-parking', 'hood-boundaries' ];
+var toggleableLayerIds = [ 'bike-routes', 'bike-parking', 'neighborhoods', 'public-benches' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
@@ -62,10 +75,10 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     var link = document.createElement('a');
     link.href = '#';
     link.className = 'active';
-    link.textContent = id;
+    link.textContent = id.replace(/-/, ' ');
 
     link.onclick = function (e) {
-        var clickedLayer = this.textContent;
+        var clickedLayer = this.textContent.replace(/ /, '-');
         e.preventDefault();
         e.stopPropagation();
 
@@ -85,7 +98,7 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
 }
 
 // Hover to show features in panel
-map.on('mousemove', function (e) {
+map.on('click', function (e) {
 	var features = map.queryRenderedFeatures(e.point);
 	
 	if (JSON.stringify(features, null, 2).length > 1 && JSON.stringify(features, null, 2)[0].properties) {

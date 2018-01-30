@@ -2,9 +2,10 @@
 ## Current Features
 - Displays on click:
 	- [x] Bike parking
-	- [ ] Bike routes
+	- [x] Bike routes
 	- [x] Neighborhood boundaries
 - [NYC Open Data for Bikes](http://www.nyc.gov/html/dot/html/about/datafeeds.shtml#bikes)
+- See [notes](https://github.com/elainechan/mapping/blob/master/notes.md) for development details.
 ---
 ## Features Wishlist
 ### Transit Information
@@ -62,21 +63,3 @@
 #### Sources
 * [The Effects of Rent Control Expansion on Tenants, Landlords, and Inequality: Evidence from San Francisco](http://conference.nber.org/confer//2017/PEf17/Diamond_McQuade_Qian.pdf)
 * [1000 Largest U.S. Cities Data in JSON](https://gist.github.com/Miserlou/c5cd8364bf9b2420bb29)
----
-## Consuming Twitter and FourSquare APIs
-[Blog Post on Twitter GET](http://elainechan.nyc/twitter-api/)
-### Collecting Twitter Data
-* Write to file with .get tweets passing params
-* Refine search to make sure we're getting 'valid' tweets
-* Parse those results for data
-* Within this time range, in this geo location, matching this query, how many tweets are there?
-#### Tweepy Streaming Steps
-1. Authenticate using four tokens.
-2. Create a live streaming listener.
-3. Save data in two formats simultaneously:
-	a. Use `data` parameter and save as `JSON`.
-	b. Use `status` parameter and save as `txt`.
-#### Node Twitter
-- [Node Twitter Repo](https://github.com/desmondmorris/node-twitter)
-### Collecting FourSquare Data
-- [FourSquare API](https://developer.foursquare.com/)
