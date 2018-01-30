@@ -66,32 +66,6 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     layers.appendChild(link);
 }
 
-// Check radio button to show chosen style
-var layerList = document.getElementById('menu');
-var inputs = layerList.getElementsByTagName('input');
-function switchLayer(layer) {
-    var layerValue = layer.target.value;
-    map.setStyle(`mapbox://styles/chanversus/${layerValue}`);
-}
-for (var i = 0; i < inputs.length; i++) {
-    inputs[i].onclick = switchLayer;
-}
-// Click map to show shaded hoods
-map.on('click', () => {
-	map.addSource('hoods', {
-        'type': 'geojson',
-        'data': './nyc-neighborhoods-tab.geojson'
-	});
-	map.addLayer({
-        'id': 'hoods-layer',
-        'type': 'fill',
-        'source': 'hoods',
-        'paint': {
-            'fill-color': 'rgba(200, 100, 240, 0.4)',
-            'fill-outline-color': 'rgba(200, 100, 240, 1)'
-        }
-	});
-});
 // Show popup on click (NOT WORKING)
 map.on('click', 'hoods-layer', function (e) {
         new mapboxgl.Popup()
