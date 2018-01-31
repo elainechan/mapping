@@ -1,5 +1,5 @@
 # NYC Map for Cyclist and Pedestrians
-A map containing granular local information rarely found in commercial maps.
+A map containing granular local information rarely found on commercial maps.
 
 [Check it out](https://elainechan.github.io/mapping/)
 ## Current Features
