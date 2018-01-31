@@ -7,7 +7,145 @@
 	- [x] public benches
 - [x] Tooltip containing location metadata on click
 - [x] MODAL: 'about this project', 'contact'
-
+## GeoJSON Specs
+- benches
+	- features[0].layer.id === 'public-benches'
+	- features[0].properties - Address, Street, X_Street, Typ
+-  bike-parking
+	- features[0].layer.id === 'bike-parking'
+	- features[0].properties - Name ([string] street address), total_rack, circular(int)small(int), large(int), mini_hoop(int)
+- bike-routes
+	- features[0].layer.id === 'bike-routes'
+	- features[0].properties - fromstreet, street, tostreet, onoffst (ON or OFF), lanecou(int), 	bikedir([int] 1 or 2), tf_facilit / ft_facilit ('Sharrow'=shared lane wittraffic 	'Standard'=marked bike-only lane, 'Protected Path'=separated from traffiwith divider, 	'Curbside', 'Greenway'
+	- one-way or two-way
+	- shared, dedicated, protected
+	- has parking within block
+- restaurants and bars
+- museums
+- business
+- park
+- landmark
+## Citibike Data Request
+- Works but not implemented
+```javascript
+var citibike = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "station_id": "",
+                "name": ""
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": []
+            }
+        }
+    ]
+};
+var featureObj = {
+    "type": "Feature",
+    "properties": {
+        "station_id": "",
+        "name": ""
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": []
+    }
+}
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var citibikeStations = JSON.parse(this.responseText);
+        citibikeStations.data.stations.forEach(function(i, data) {
+            var coordinates = [];
+            coordinates.push(data.lon);
+            coordinates.push(data.lat);
+        });
+    }
+};
+xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_information.json', true);
+xmlhttp.send();
+```
+```javascript
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var citibikeStatus = JSON.parse(this.responseText);
+        console.log(citibikeStatus.data.stations[0]);
+    }
+};
+xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_status.json', true);
+xmlhttp.send();
+```
+## Features Wishlist
+### Supercluster
+- [Example with Google Maps and NYC Open Data](http://www1.nyc.gov/site/planning/data-maps/transportation/cityracks-map.page)
+- [Custom icon for clusters in Mapbox GL Js](https://gis.stackexchange.com/questions/261987/custom-icon-for-clusters-in-mapbox-gl-js)
+- [Mapbox GL JS - Cluster Property Aggregation with Supercluster](https://bl.ocks.org/ryanbaumann/01b2c7fc0ddb7b27f6a72217bd1461ad)
+- [supercluster repo](https://github.com/mapbox/supercluster)
+- [supercluster npm](https://www.npmjs.com/package/supercluster)
+- [Turf.js](http://turfjs.org/getting-started/)
+### Transit Information
+- Subway stations, routes, and entrances/exits
+- Rail stations, routes
+- [NYC Street Closures due to construction activities by Intersection](https://data.cityofnewyork.us/Transportation/Street-Closures-due-to-construction-activities-by-/478a-yykk)
+### Hyperlocal Information
+#### News
+* 'How sick is New York right now?' 
+	- For a given geograpic area, at what rate are people tweeting symptoms and diseases ('cough', 'flu', 'sneeze', 'fever', 'allergy', etc.)?
+* News tracking: correctly detect topic + sentiment from a block of tweets.
+	- Can we predict flu epidemic in X city? (search by geolocation)
+	- Is there a current housing crisis in San Francisco, comparing yoy? (search by geo and time)
+		* Time series analysis
+			* Severity y-o-y, m-o-m ('20% increase over last month')
+			* Volume of tweets y-o-y, m-o-m
+			* number of evictions y-o-y, m-o-m
+		* Sentiment analysis (varies based on search: 'homeless', 'evicted' are definitely negative)
+		* Last step: monthly tweet sent out saying 'evictions appear to be up in San Francisco'
+		* (Later version: to work around rate limits, use seperate Twitter accounts/Oauth credentials for individual major cities)
+##### Method: Source Tweets
+* Using geolocation information (latlongs, neighborhoods, streets, landmarks, buildings, etc.), retrieve tweets using Twitter API.
+* Provide input field for keyword queries.
+* Display relevant tweets on page.
+* Possible focus on tweets by neighborhood bloggers.
+#### Activities
+* Eat, drink - restaurants, cafes, bars
+* Work, study - offices, schools, libraries, coworking spaces, cafes with wifi
+* Play - bowling allies, parks, cinemas, theaters, concert venues, performance spaces, museums
+##### Method: Source FourSquare Data
+* Using geo information, retrieve nearby venues
+* Provide menu for category (eat, drink, work, study, play), and input field for keyword queries.
+### History
+* If the place has a Wikipedia entry, display link in popup
+#### Sources
+* [NYC 311 Service Requests from 2010 to Present](https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9)
+* [NYC Open311 API](https://developer.cityofnewyork.us/api/open311-inquiry)
+* [NYC Geoclient API](https://developer.cityofnewyork.us/api/geoclient-api)
+* [NYC Neighborhood blogs](https://www.brickunderground.com/neighborhoodintel/best-nyc-neighborhood-blogs-2017)
+* [Patch NYC](https://patch.com/new-york/new-york-city)
+* [Curbed NY](https://ny.curbed.com/)
+* [NYT](https://www.nytimes.com/section/nyregion)
+* [NYPost](https://nypost.com/metro/)
+* [NY Daily News](http://www.nydailynews.com/new-york)
+### Trendline Analysis
+* Static interactive visualization of a dataset
+* Use D3 to present the trend line
+	- Hover over trendline: display a single tweet that represents the trend and hyperlink to view original tweet on Twitter
+* If scanning historical and current tweets for trends in a city, could present trend data periodically (using Heroku scheduler, 'run once a day')
+* API calls will come from frontend JavaScript
+	1. Python script writes out some JSON with the 'analysis results'
+	2. That JSON is dropped into the top of your `app.js` file
+	3. The same `app.js` file makes API calls to D3, maybe to embed some tweets
+* "Datastore" is just `var Store = {}`
+* Use heroku to serve `index.html`, `index.css` and `app.js` files
+* Once the first Node/Express app is 'up' on Heroku, you can put files in the `/public` folder and they'll be served verbatim with no extra logic required
+#### Sources
+* [The Effects of Rent Control Expansion on Tenants, Landlords, and Inequality: Evidence from San Francisco](http://conference.nber.org/confer//2017/PEf17/Diamond_McQuade_Qian.pdf)
+* [1000 Largest U.S. Cities Data in JSON](https://gist.github.com/Miserlou/c5cd8364bf9b2420bb29)
+---
 ## Current Processes
 ### Building custom vector tiles
 - Convert shapefile to GeoJSON using `ogr2ogr` tool from [GDAL](http://www.gdal.org/ogr2ogr.html) 
@@ -38,10 +176,6 @@
 	- `try { setting this variable } catch {}` - does not stop execution
 	- `try{setting this variable} catch {console.log('error on line 51') }` logs out specific error
 
-## Examples Used
-- [Toggle buttons example (Codepen)](https://codepen.io/mallendeo/pen/eLIiG)
-- [Get features on hover (Mapbox)](https://www.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/)
-- [Switch map style on radio button check (Mapbox)](https://www.mapbox.com/mapbox-gl-js/example/setstyle/)
 ---
 ## Wishlist
 ### Toggle buttons

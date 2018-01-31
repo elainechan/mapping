@@ -1,3 +1,5 @@
+// THIS CODE WORKS BUT IS NOT CURRENTLY IN USE
+// The idea was to provide activity information by taking query input and location coordinate inputs and providing a list of suggested venues.
 const request = require('request');
 const config = require('./foursquare-config.js');
 

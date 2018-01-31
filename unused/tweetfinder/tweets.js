@@ -1,3 +1,6 @@
+// THIS CODE WORKS BUT IS NOT CURRENTLY IN USE
+// The idea was to provide hyperlocal information by taking location coordinates input on click and display tweets from that coordinate.
+
 'use strict';
 
 const Twitter = require('/Users/Leo/Mapping/node_modules/twitter');

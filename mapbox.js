@@ -141,13 +141,14 @@ map.on('click', function (e) {
             .setLngLat(features[0].geometry.coordinates)
             .setHTML(`<h5>${features[0].properties.type}</h5>`).addTo(map);
         } 
-    } /* else if (features[0].layer.id === 'bike-routes') {
+    }
+    /* Meant to supply bike route information but breaks app */ 
+    /* else if (features[0].layer.id === 'bike-routes') {
         map.on('mouseover', function() {
             map.getCanvas().style.cursor = 'pointer';
         });
         var routeType = 'Bicycle path';
         var routeDescription = 'intended for bicycle traffic';
-        
         switch(features[0].properties.ft_facilit || features[0].properties.tf_facilit) {
             case 'Sharrow':
                 routeType = 'Shared path';
@@ -174,7 +175,6 @@ map.on('click', function (e) {
                 routeDescription = 'intended for bicycle traffic';
                 break;
         } 
-        
         new mapboxgl.Popup()
             .setLngLat(features[0].geometry.coordinates)
             .setHTML(`<h5>Bike route</h5><p><em>${routeType}</em>, ${routeDescription}</p>`).addTo(map);
@@ -182,84 +182,3 @@ map.on('click', function (e) {
     */
 	document.getElementById('features').innerHTML = JSON.stringify(features, null, 2)
 });
-     
-        /* Places and features
-
-        -- benches
-        features[0].layer.id === 'public-benches'
-         features[0].properties - Address, Street, X_Street, Type
-
-        --  bike-parking
-         features[0].layer.id === 'bike-parking'
-         features[0].properties - Name ([string] street address), total_rack, circular(int), small(int), large(int), mini_hoop(int)
-
-        -- bike-routes
-         features[0].layer.id === 'bike-routes'
-         features[0].properties - fromstreet, street, tostreet, onoffst (ON or OFF), lanecount(int), bikedir([int] 1 or 2), tf_facilit / ft_facilit ('Sharrow'=shared lane with traffic, 'Standard'=marked bike-only lane, 'Protected Path'=separated from traffic with divider, 'Curbside', 'Greenway')
-
-         one-way or two-way
-         shared, dedicated, protected
-         has parking within block
-
-        -- restaurants and bars
-        -- museums
-        -- business
-        -- park
-        -- landmark
-        */
-
-// Request Citibike data (WORKS)
-/*
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var citibikeStatus = JSON.parse(this.responseText);
-        console.log(citibikeStatus.data.stations[0]);
-    }
-};
-xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_status.json', true);
-xmlhttp.send();
-*/
-
-
-var citibike = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "properties": {
-                "station_id": "",
-                "name": ""
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": []
-            }
-        }
-    ]
-};
-var featureObj = {
-    "type": "Feature",
-    "properties": {
-        "station_id": "",
-        "name": ""
-    },
-    "geometry": {
-        "type": "Point",
-        "coordinates": []
-    }
-}
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var citibikeStations = JSON.parse(this.responseText);
-        citibikeStations.data.stations.forEach(function(i, data) {
-
-            var coordinates = [];
-            coordinates.push(data.lon);
-            coordinates.push(data.lat);
-        });
-    }
-};
-xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_information.json', true);
-xmlhttp.send();
