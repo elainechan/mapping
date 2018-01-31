@@ -1,4 +1,4 @@
-# NYC Map For Cyclist and Pedestrians
+# NYC Map for Cyclist and Pedestrians
 A map containing granular local information not normally found in commercial maps.
 
 [Check it out](https://elainechan.github.io/mapping/)
