@@ -116,6 +116,11 @@ map.on('click', function (e) {
                 .setLngLat(features[0].geometry.coordinates)
                 .setHTML(`<h5>${features[0].properties.name}</h5><p>${type} station</p>`)
                 .addTo(map);
+            } else if (features[0].properties.name_en) {
+                new mapboxgl.Popup()
+                .setLngLat(features[0].geometry.coordinates)
+                .setHTML(`<h5>${features[0].properties.name_en}</h5><p>${features[0].properties.type}</p>`)    
+                .addTo(map);
             } else {
                 new mapboxgl.Popup()
                 .setLngLat(features[0].geometry.coordinates)
@@ -132,53 +137,14 @@ map.on('click', function (e) {
                 .setLngLat(features[0].geometry.coordinates)
                 .setHTML(`<h5>${features[0].properties.Name}</h5><p>${features[0].properties.Name}</p>`).addTo(map);
             }
-        } else if (features[0].layer.id === 'public-benches') { // Public benches has no 'name' field
+        } else if (features[0].layer.id === 'public-benches') { // Public benches have no 'name' field
                 new mapboxgl.Popup()
                 .setLngLat(features[0].geometry.coordinates)
-                .setHTML(`<h5>Public bench</h5><p>${features[0].properties.Address}, between ${features[0].properties.X_Street}</p>`).addTo(map);
+                .setHTML(`<h5>Public bench</h5><p>${features[0].properties.Address}, between ${features[0].properties.X_Street}</p><p>Type: ${features[0].properties.Type}</p>`).addTo(map);
         } else {
             new mapboxgl.Popup()
             .setLngLat(features[0].geometry.coordinates)
             .setHTML(`<h5>${features[0].properties.type}</h5>`).addTo(map);
         } 
     }
-    /* Meant to supply bike route information but breaks app */ 
-    /* else if (features[0].layer.id === 'bike-routes') {
-        map.on('mouseover', function() {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-        var routeType = 'Bicycle path';
-        var routeDescription = 'intended for bicycle traffic';
-        switch(features[0].properties.ft_facilit || features[0].properties.tf_facilit) {
-            case 'Sharrow':
-                routeType = 'Shared path';
-                routeDescription = 'intended for shared use with vehicle traffic; vehicles are allowed to drive on the parts of the road where bicycles travel';
-                break;
-            case 'Standard':
-                routeType = 'Dedicated path';
-                routeDescription = 'intended for bicycles only';
-                break;
-            case 'Curbside':
-                routeType = 'Curbside path';
-                routeDescription = 'next to a curb, near pedestrians';
-                break;
-            case 'Protected Path':
-                routeType = 'Protected path';
-                routeDescription = 'separated from vehicle traffic with barriers or extra space';
-                break;
-            case 'Greenway':
-                routeType = 'Greenway';
-                routeDescription = 'along a strip of undeveloped land set aside for recreational use, e.g. waterfront, parkway, and nature trails';
-                break;
-            default:
-                routeType = 'Bicycle path';
-                routeDescription = 'intended for bicycle traffic';
-                break;
-        } 
-        new mapboxgl.Popup()
-            .setLngLat(features[0].geometry.coordinates)
-            .setHTML(`<h5>Bike route</h5><p><em>${routeType}</em>, ${routeDescription}</p>`).addTo(map);
-    } 
-    */
-	document.getElementById('features').innerHTML = JSON.stringify(features, null, 2)
 });

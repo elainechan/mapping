@@ -25,6 +25,15 @@
 - business
 - park
 - landmark
+## Metadata panel for development
+Insert at the end of `map.on('click')`
+```javascript
+document.getElementById('features').innerHTML = JSON.stringify(features, null, 2)
+```
+Add to HTML
+```html
+<pre id='features'></pre><!--feature-popup-->
+```
 ## Citibike Data Request
 - Works but not implemented
 ```javascript
@@ -175,7 +184,6 @@ xmlhttp.send();
 	- the array of results has a nonzero lenfgth *the first exists, && second exists etc
 	- `try { setting this variable } catch {}` - does not stop execution
 	- `try{setting this variable} catch {console.log('error on line 51') }` logs out specific error
-
 ---
 ## Wishlist
 ### Toggle buttons
