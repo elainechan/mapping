@@ -6,7 +6,7 @@
 	- [x] neighborhood boundaries layer
 	- [x] public benches
 - [x] Tooltip containing location metadata on click
-- [ ] MODAL: 'about this project', 'contact'
+- [x] MODAL: 'about this project', 'contact'
 
 ## Current Processes
 ### Building custom vector tiles

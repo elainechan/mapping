@@ -8,6 +8,12 @@
 - See [notes](https://github.com/elainechan/mapping/blob/master/notes.md) for development details.
 ---
 ## Features Wishlist
+### Supercluster
+- [Custom icon for clusters in Mapbox GL Js](https://gis.stackexchange.com/questions/261987/custom-icon-for-clusters-in-mapbox-gl-js)
+- [Mapbox GL JS - Cluster Property Aggregation with Supercluster](https://bl.ocks.org/ryanbaumann/01b2c7fc0ddb7b27f6a72217bd1461ad)
+- [supercluster repo](https://github.com/mapbox/supercluster)
+- [supercluster npm](https://www.npmjs.com/package/supercluster)
+- [Turf.js](http://turfjs.org/getting-started/)
 ### Transit Information
 - Subway stations, routes, and entrances/exits
 - Rail stations, routes
