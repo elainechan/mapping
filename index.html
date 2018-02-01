@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
     <meta charset='utf-8' />
     <title>NYC Map For Cyclist and Pedestrians</title>
@@ -19,78 +19,9 @@
 
 </head>
 <body>
-
-<style>
-body { margin:0; padding:0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
-#features {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 300px;
-    overflow: auto;
-    background: rgba(255, 255, 255, 0.7);
-}
-#map canvas {
-    cursor: crosshair;
-}
-
-#menu1 {
-        background: #fff;
-        position: absolute;
-        z-index: 4;
-        top: 10px;
-        left: 10px;
-        border-radius: 3px;
-        width: 120px;
-        border: 1px solid rgba(0,0,0,0.4);
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    #menu1 a {
-        font-size: 13px;
-        color: #404040;
-        display: block;
-        margin: 0;
-        padding: 0;
-        padding: 10px;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(0,0,0,0.25);
-        text-align: center;
-    }
-
-    #menu1 a:last-child {
-        border: none;
-    }
-
-    #menu1 a:hover {
-        background-color: #f8f8f8;
-        color: #404040;
-    }
-
-    #menu1 a.active {
-        background-color: #3887be;
-        color: #ffffff;
-    }
-
-    #menu1 a.active:hover {
-        background: #3074a4;
-    }
-
-#modal-container {
-  position: absolute;
-  z-index: 1999;
-  bottom: 36px;
-}
-.modal-content {
-  z-index: 2000;
-}
-</style>
-
-<div id='map'></div>
-<nav id="menu1"></nav><!--toggle-buttons-->
-<div class="container" id="modal-container">
+<div id="map" role="main"></div>
+<nav id="menu1"role="navigation"></nav><!--toggle-buttons-->
+<div class="container" id="modal-container" role="contentinfo">
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">About</button>
 
