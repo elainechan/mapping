@@ -1,4 +1,11 @@
-body { margin:0; padding:0; }
+body { 
+    margin:0;
+    padding:0;
+    /*
+    background-image: url('./bike-logo.png');
+    background-position: left top;
+    */
+}
 #map { 
   position:absolute;
   top:0;
@@ -17,12 +24,34 @@ body { margin:0; padding:0; }
     cursor: crosshair;
 }
 
+#logo-container {
+    position: absolute;
+    top:10px;
+    left: 10px;
+}
+#logo {
+    width: 50%;
+    height: 50%;
+}
+#neighborhood-label {
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    right: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);;
+    width: 400px;
+    height: 40px;
+}
+
 #menu1 {
         background: #fff;
         position: absolute;
         z-index: 4;
         top: 10px;
-        left: 10px;
+        right: 10px;
         border-radius: 3px;
         width: 140px;
         border: 1px solid rgba(0,0,0,0.4);
@@ -69,4 +98,13 @@ body { margin:0; padding:0; }
 }
 .btn-info {
   background-color: #2d3b45!important;
+}
+#features {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.8);
 }

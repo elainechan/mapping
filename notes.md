@@ -7,6 +7,10 @@
 	- [x] public benches
 - [x] Tooltip containing location metadata on click
 - [x] MODAL: 'about this project', 'contact'
+
+## SVG Logo Placement
+- [Detailed SVG guide](https://svgontheweb.com/)
+- [include an SVG (hosted on github) in MarkDown](https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-markdown)
 ## GeoJSON Specs
 - benches
 	- features[0].layer.id === 'public-benches'
@@ -198,7 +202,7 @@ xmlhttp.send();
 	- `try{setting this variable} catch {console.log('error on line 51') }` logs out specific error
 ---
 ## Wishlist
-### Toggle buttons
+### Fancy toggle buttons
 - [Toggle buttons with on/off labels (Codepen)](https://codepen.io/christiannaths/pen/JoQBzY)
 - [Add on/off text to toggle (Stackoverflow)](https://stackoverflow.com/questions/39846282/how-to-add-the-text-on-and-off-to-toggle-button)
 - [ARIA notes on toggles](https://inclusive-components.design/toggle-button/)

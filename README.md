@@ -1,6 +1,6 @@
 ![Bike logo](./bike-logo.svg) 
 # NYC Map for Cyclists and Pedestrians
-A map containing granular local information rarely found on commercial maps.
+Trying to make NYC more bike- and pedestrian-friendly...here's a map containing granular local information rarely found on commercial maps.
 
 [Check it out](https://elainechan.github.io/mapping/)
 ## Current Features
@@ -8,7 +8,8 @@ A map containing granular local information rarely found on commercial maps.
 	- Bike parking locations
 	- Bike routes
 	- Public benches locations
-	- Neighborhood boundaries
+	- Neighborhood boundaries toggle
+- Neighborhood area highlight on hover.
 - Displays popup with location information on symbol click.
 - See [notes](https://github.com/elainechan/mapping/blob/master/notes.md) for copious details and sources.
 ## Usage

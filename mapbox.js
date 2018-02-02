@@ -151,14 +151,18 @@ for (var i = 0; i < toggleableLayers.length; i++) {
 // Highlights neighborhood polygon on hover
 if (document.getElementById('neighborhoods').className === 'active') {
     map.on("mousemove", "neighborhood-fills", function(e) {
+        let features = map.queryRenderedFeatures(e.point);
         map.setFilter("neighborhood-fills-hover", ["==", "Name", e.features[0].properties.Name]);
+        document.getElementById('neighborhood-label').removeAttribute('hidden');
+        document.getElementById('neighborhood-label').innerHTML = JSON.stringify(e.features[0].properties.Name, null, 2)
     });
     // Reset neighborhood-fills-hover layer's filter when the mouse leaves the layer.
     map.on("mouseleave", "neighborhood-fills", function() {
         map.setFilter("neighborhood-fills-hover", ["==", "name", ""]);
+        document.getElementById('neighborhood-label').setAttribute('hidden');
     });
 }
-// Click to show popup with information about the venue
+// Hover over symbols to change cursor to pointer
 map.on('mouseover', function(e) {
     let features = map.queryRenderedFeatures(e.point);
     // Places with icons are clickable
@@ -166,7 +170,7 @@ map.on('mouseover', function(e) {
         map.getCanvas().style.cursor = 'pointer';
     }
 });
-
+// Click to show popup with information about the venue
 map.on('click', function(e) {
     let features = map.queryRenderedFeatures(e.point);
     if (features[0].layer.type === 'symbol' && features[0].geometry.type === 'Point') {
@@ -221,4 +225,5 @@ map.on('click', function(e) {
                 .addTo(map);
         }
     }
+    document.getElementById('features').innerHTML = JSON.stringify(features, null, 2)
 });
