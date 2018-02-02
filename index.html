@@ -2,14 +2,15 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>NYC Map For Cyclist and Pedestrians</title>
+<title>Bike Me</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <link rel="stylesheet" href="./main.css">
 <!--Mapbox API--><script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-<!--Mapbox Stylesheet--><link   href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+<!--Mapbox Stylesheet--><link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
 <!--jQuery API--><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!--Bootstrap API--><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--Bootstrap stylesheet--><link rel="stylesheet"   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--Font--><link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 <!--USE ME!!!!!!!!!!-->
 <!--Supercluster--><script src="https://unpkg.com/supercluster@3.0.2/dist/supercluster.min.js"></script>
 <!--Turf--><script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
@@ -18,8 +19,34 @@
 </head>
 
 <body>
+<h1>Bike Me</h1>
 <div id="map" role="main"></div>
-<pre id='features'></pre><!--feature-popup-->
+<div id='style-menu'>
+  <input id='day' type='radio' name='rtoggle' value='day' checked='checked'>
+  <label for='day'>day</label>
+  <input id='streets' type='radio' name='rtoggle' value='streets' >
+  <label for='streets'>streets</label>
+  <input id='navigate' type='radio' name='rtoggle' value='navigate'>
+  <label for='navigate'>navigate</label>
+  <input id='scenic' type='radio' name='rtoggle' value='scenic'>
+  <label for='scenic'>scenic</label>
+  <input id='light' type='radio' name='rtoggle' value='light' >
+  <label for='light'>light</label>
+  <input id='standard' type='radio' name='rtoggle' value='standard' >
+  <label for='standard'>standard</label>
+  <input id='north-star' type='radio' name='rtoggle' value='north-star'>
+  <label for='north-star'>north star</label>
+  <input id='night' type='radio' name='rtoggle' value='night'>
+  <label for='night'>night</label>
+  <input id='dark' type='radio' name='rtoggle' value='dark' >
+  <label for='dark'>dark</label>
+  <input id='nav-night' type='radio' name='rtoggle' value='nav-night'>
+  <label for='nav-night'>navigate night</label>
+  <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+  <label for='satellite'>satellite</label>
+  <input id='satellite-streets' type='radio' name='rtoggle' value='satellite-streets'>
+  <label for='satellite-streets'>satellite streets</label>
+</div>
 <pre id="neighborhood-label" hidden></pre>
 <div id="logo-container">
 <svg id="logo" width="400" height="400">
@@ -46,7 +73,7 @@
 <circle cx="145" cy="38" r="9" stroke="black" stroke-width="8" fill="transparent" clip-path="url(#cut-off-bottom)" />
 </svg> 
 </div>
-<nav id="menu1"role="navigation"></nav><!--toggle-buttons-->
+<nav id="toggle-features"role="navigation"></nav><!--toggle-buttons-->
 <div class="container" id="modal-container" role="contentinfo">
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">About</button>
@@ -63,7 +90,7 @@
     <p>Click anywhere on the map to get data on that location.</p>
     <p>Use buttons on the upper left to show or hide markers.</p>
     <p>This map is made with Mapbox and NYC Open Data.</p>
-documentation</a>
+    <a href="https://github.com/elainechan/mapping" target="_blank">Source code and documentation</a>
   </div><!--.modal-body-->
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

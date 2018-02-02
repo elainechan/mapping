@@ -4,14 +4,23 @@ Trying to make NYC more bike- and pedestrian-friendly...here's a map containing 
 
 [Check it out](https://elainechan.github.io/mapping/)
 ## Current Features
-- Displays on load, toggles on button click:
-	- Bike parking locations
-	- Bike routes
-	- Public benches locations
-	- Neighborhood boundaries toggle
-- Neighborhood area highlight on hover.
-- Displays popup with location information on symbol click.
-- See [notes](https://github.com/elainechan/mapping/blob/master/notes.md) for copious details and sources.
+- Toggle features: show or hide these layers by clicking some buttons:
+	1. `Bike parking`: park the bike and go do something.
+		- Click on a bike symbol to see the address and number of racks available at that spot.
+	2. `Bike routes`: go somewhere.
+	3. `Public benches`: take a break from walking around all day.
+		- Click on a triangle to see the address and cross streets of the location, and whether the bench has a back or not! It's important if you like to lead back.
+	4. `Neighborhoods`: find out what neighborhood you're in.
+		- When the `Neighborhoods` layer is active, hovering over a neighborhood highlights it and prints its name in a popup box in the bottom.
+- Popup information: when you click on some random symbols (subway station, schools, landmark, etc.), a dialog box appears and shows basic information. 
+	- It's not particularly useful right now, but it will be after adding Twitter and FourSquare data.
+- Switchable map style: click the radio buttons up top to switch to a different map style.
+	- Default: the Navigation Preview Day theme, an elegant and clean navigation map layer.
+	- Streets: the popular Mapbox Streets style with a good amount of navigation details.
+	- Scenic: a minimalist navigation map that highlights major features for nature enthusiasts (parks, highways, etc.).
+	- Standard: a retro style modeled after the Standard Oil maps.
+	- Navigate: a no-nonsense navigation map that highlights roadways.
+	- North Star: a nautical navigation map with ocean depth contours; looks better far out than zoomed in.
 ## Usage
 Click on a symbol to see more information about it.
 ![Popup box](./popup.png)
@@ -23,9 +32,16 @@ Press the buttons on the upper left corner to show or hide features.
 - [Mapbox GL JS API](https://www.mapbox.com/mapbox-gl-js/api/)
 - [Bootstrap](https://v4-alpha.getbootstrap.com/components/modal/)
 ## Process
-- Data is downloaded manually from NYC Open Data and uploaded to Mapbox Studio to create custom vector tiles.
-- To create the show/hide features effect, the code uses Mapbox API to render a map and retrieve the custom vector tiles as layers upon the map.
+1. Features toggle
+	- Data is downloaded manually from NYC Open Data and uploaded to [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) to create custom vector tiles.
+	- To create the show/hide features effect, the code uses Mapbox API to render a map and retrieve the custom vector tiles as layers upon the map.
+2. Switchable map styles
+	- Manually selected map styles on Mapbox Studio, then uses API to retrieve styles at runtime.
 ## Examples Used
 - [Show and hide layers (Mapbox)](https://www.mapbox.com/mapbox-gl-js/example/toggle-layers/)
 - [Create a hover effect](https://www.mapbox.com/mapbox-gl-js/example/hover-styles/)
 - [Bootstrap modal plugin](https://www.w3schools.com/bootstrap/bootstrap_modal.asp)
+## Notes
+- See [notes](https://github.com/elainechan/mapping/blob/master/notes.md) for development notes and sources.
+- See [bleachers](https://github.com/elainechan/mapping/blob/master/bleachers.md) for leftover code bits that mostly worked but didn't make the cut.
+- See [greenroom](https://github.com/elainechan/mapping/blob/master/greenroom) for code that's can't wait to be used for coming features.
