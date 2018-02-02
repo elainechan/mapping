@@ -1,4 +1,20 @@
-body { margin:0; padding:0; }
+body { 
+    margin:0;
+    padding:0;
+    font-family: 'Roboto Mono', monospace;
+    /*
+    background-image: url('./bike-logo.png');
+    background-position: left top;
+    */
+}
+h1 {
+    font-family: 'Roboto Mono', monospace;
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    display: inline-block;
+    z-index: 150000!important;
+}
 #map { 
   position:absolute;
   top:0;
@@ -11,25 +27,58 @@ html, body {
   margin: 0;
   padding: 0;
 }
-body { margin:0; padding:0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
 #map canvas {
     cursor: crosshair;
 }
+#logo-container {
+    position: absolute;
+    bottom: -20px;
+    left: 5px;
+}
+#logo {
+    width: 50%;
+    height: 50%;
+}
+#neighborhood-label {
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    right: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);;
+    width: 400px;
+    height: 40px;
+}
 
-#menu1 {
+#style-menu {
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    background: #fff;
+    filter: opacity(0.8);
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 100;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#toggle-features {
         background: #fff;
         position: absolute;
         z-index: 4;
         top: 10px;
-        left: 10px;
+        right: 10px;
         border-radius: 3px;
         width: 140px;
         border: 1px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
 
-    #menu1 a {
+    #toggle-features a {
+        font-family: 'Roboto Mono', monospace;
         font-size: 14px!important;
         color: #404040;
         display: block;
@@ -41,32 +90,39 @@ body { margin:0; padding:0; }
         text-align: center;
     }
 
-    #menu1 a:last-child {
+    #toggle-features a:last-child {
         border: none;
     }
 
-    #menu1 a:hover {
+    #toggle-features a:hover {
         background-color: #f8f8f8;
         color: #404040;
     }
 
-    #menu1 a.active {
+    #toggle-features a.active {
         background-color: #2d3b45!important;
         color: #ffffff;
     }
 
-    #menu1 a.active:hover {
+    #toggle-features a.active:hover {
         background: #3074a4;
     }
 
 #modal-container {
   position: absolute;
   z-index: 1999;
-  bottom: 36px;
+  top: 200px;
+  right: 10px;
+  bottom: 20px;
 }
 .modal-content {
   z-index: 2000;
+  font-family: 'Roboto Mono', monospace;
 }
-.btn {
+.btn-info {
   background-color: #2d3b45!important;
+  font-family: 'Roboto Mono', monospace;
+  right: 10px;
+  bottom: 10px!important;
+  position: absolute;
 }

@@ -1,5 +1,15 @@
 # Project Notes
 ## TODO
+- [ ] Destroy and rebuild layer toggle menus on `style.load`.
+    - Right now it's janky; sometimes buttons are off while features are visible, even though it corrects after pressing the buttons a few times. 
+- [ ] Drop-down menu for full list of map styles.
+- [ ] Metadata panel toggle.
+- [ ] Social media share buttons.
+    - [ ] [Twitter](https://dev.twitter.com/web/tweet-button)
+    - [ ] [Facebook](https://developers.facebook.com/docs/plugins/share-button)
+    - [ ] [Tumblr](https://www.tumblr.com/buttons)
+- Show nearby tweets on query.
+- Show nearby foursquare venues on query.
 - Toggle buttons SHOW/HIDE:
 	- [x] bicycle route layer
 	- [x] bike parking layer
@@ -7,6 +17,15 @@
 	- [x] public benches
 - [x] Tooltip containing location metadata on click
 - [x] MODAL: 'about this project', 'contact'
+## Readding Custom Layers After Style Switch
+- [Add custom layers on style switch, Mike Bostock](https://bl.ocks.org/ryanbaumann/7f9a353d0a1ae898ce4e30f336200483/96bea34be408290c161589dcebe26e8ccfa132d7)
+9 [Github issue on switching styles and retaining layers](https://github.com/mapbox/mapbox-gl-js/issues/3979)
+## Manipulating `HTMLCollection` With `Array.from().forEach()`
+- [Iterate over a nodeList or HTMLCollection](https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements/22754453)
+- BONUS: checking if element exists in the DOM: `alert` `document.getElementById('bike-routes')` and if it doesn't exist the output is `null`.
+## SVG Logo Placement
+- [Detailed SVG guide](https://svgontheweb.com/)
+- [include an SVG (hosted on github) in MarkDown](https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-markdown)
 ## GeoJSON Specs
 - benches
 	- features[0].layer.id === 'public-benches'
@@ -25,70 +44,6 @@
 - business
 - park
 - landmark
-## Metadata panel for development
-Insert at the end of `map.on('click')`
-```javascript
-document.getElementById('features').innerHTML = JSON.stringify(features, null, 2)
-```
-Add to HTML
-```html
-<pre id='features'></pre><!--feature-popup-->
-```
-## Citibike Data Request
-- Works but not implemented
-```javascript
-var citibike = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "properties": {
-                "station_id": "",
-                "name": ""
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": []
-            }
-        }
-    ]
-};
-var featureObj = {
-    "type": "Feature",
-    "properties": {
-        "station_id": "",
-        "name": ""
-    },
-    "geometry": {
-        "type": "Point",
-        "coordinates": []
-    }
-}
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var citibikeStations = JSON.parse(this.responseText);
-        citibikeStations.data.stations.forEach(function(i, data) {
-            var coordinates = [];
-            coordinates.push(data.lon);
-            coordinates.push(data.lat);
-        });
-    }
-};
-xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_information.json', true);
-xmlhttp.send();
-```
-```javascript
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var citibikeStatus = JSON.parse(this.responseText);
-        console.log(citibikeStatus.data.stations[0]);
-    }
-};
-xmlhttp.open('GET', 'https://gbfs.citibikenyc.com/gbfs/en/station_status.json', true);
-xmlhttp.send();
-```
 ## Features Wishlist
 ### Supercluster
 - [Example with Google Maps and NYC Open Data](http://www1.nyc.gov/site/planning/data-maps/transportation/cityracks-map.page)
@@ -186,7 +141,7 @@ xmlhttp.send();
 	- `try{setting this variable} catch {console.log('error on line 51') }` logs out specific error
 ---
 ## Wishlist
-### Toggle buttons
+### Fancy toggle buttons
 - [Toggle buttons with on/off labels (Codepen)](https://codepen.io/christiannaths/pen/JoQBzY)
 - [Add on/off text to toggle (Stackoverflow)](https://stackoverflow.com/questions/39846282/how-to-add-the-text-on-and-off-to-toggle-button)
 - [ARIA notes on toggles](https://inclusive-components.design/toggle-button/)
@@ -230,31 +185,3 @@ xmlhttp.send();
 - [Node Twitter Repo](https://github.com/desmondmorris/node-twitter)
 #### Collecting FourSquare Data
 - [FourSquare API](https://developer.foursquare.com/)
-#### Twitter data fetch
-page=1
-result=[]
-page=100
-if (result.length = 0)
-{request with page= 50}
-{request page=25}
-the service knows it has 100 results:
-impossible: (you ask for page 1, 50 results per page, it gives you a full array)
-
-"take a look at some example tweets"
-sentiment analysis week by week
-
-Twitter search API
-15 requests in 15 minutes
-setTimeout() to space out requests
-have dataset by Tuesday
-
-// Take 200s break in setTimeout
-```javascript
-function getCityData(){
-    //request data cities[currentCityIndex]
-    //log out the result
-    currentCityIndex ++;
-    setTimeout(getCityData, 100000)
-}
-getCityData();
-```
