@@ -70,3 +70,12 @@ body { margin:0; padding:0; }
 .btn {
   background-color: #2d3b45!important;
 }
+#features {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.8);
+}
