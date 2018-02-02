@@ -4,6 +4,12 @@
     - Right now it's janky; sometimes buttons are off while features are visible, even though it corrects after pressing the buttons a few times. 
 - [ ] Drop-down menu for full list of map styles.
 - [ ] Metadata panel toggle.
+- [ ] Social media share buttons.
+    - [ ] [Twitter](https://dev.twitter.com/web/tweet-button)
+    - [ ] [Facebook](https://developers.facebook.com/docs/plugins/share-button)
+    - [ ] [Tumblr](https://www.tumblr.com/buttons)
+- Show nearby tweets on query.
+- Show nearby foursquare venues on query.
 - Toggle buttons SHOW/HIDE:
 	- [x] bicycle route layer
 	- [x] bike parking layer
