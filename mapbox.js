@@ -1,8 +1,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
+    //style: 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
     //style: 'mapbox://styles/mapbox/streets-v10',
+    style: 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
     center: [-74.0018, 40.7243],
     zoom: 10
 });
@@ -157,12 +158,7 @@ if (document.getElementById('neighborhoods').className === 'active') {
         map.setFilter("neighborhood-fills-hover", ["==", "name", ""]);
     });
 }
-// Hover to show features in panel
 // Click to show popup with information about the venue
-map.on('click', function(e) {
-    let features = map.queryRenderedFeatures(e.point);
-    document.getElementById('features').innerHTML = JSON.stringify(features, null, 2)
-});
 map.on('mouseover', function(e) {
     let features = map.queryRenderedFeatures(e.point);
     // Places with icons are clickable

@@ -34,6 +34,18 @@ Add to HTML
 ```html
 <pre id='features'></pre><!--feature-popup-->
 ```
+Add to CSS
+```css
+#features {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.8);
+}
+```
 ## Citibike Data Request
 - Works but not implemented
 ```javascript

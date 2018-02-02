@@ -1,3 +1,4 @@
+![Bike logo](./bike-logo.svg) 
 # NYC Map for Cyclists and Pedestrians
 A map containing granular local information rarely found on commercial maps.
 
@@ -25,4 +26,5 @@ Press the buttons on the upper left corner to show or hide features.
 - To create the show/hide features effect, the code uses Mapbox API to render a map and retrieve the custom vector tiles as layers upon the map.
 ## Examples Used
 - [Show and hide layers (Mapbox)](https://www.mapbox.com/mapbox-gl-js/example/toggle-layers/)
+- [Create a hover effect](https://www.mapbox.com/mapbox-gl-js/example/hover-styles/)
 - [Bootstrap modal plugin](https://www.w3schools.com/bootstrap/bootstrap_modal.asp)
