@@ -2,8 +2,8 @@
 ## TODO
 - [ ] Destroy and rebuild layer toggle menus on `style.load`.
     - Right now it's janky; sometimes buttons are off while features are visible, even though it corrects after pressing the buttons a few times. 
-- [ ] Make UI responsive for mobile.
-- [ ] Drop-down menu for full list of map styles.
+- [x] Make UI responsive for mobile.
+- [x] Drop-down menu for full list of map styles.
 - [ ] Metadata panel toggle.
 - [ ] Social media share buttons.
     - [ ] [Twitter](https://dev.twitter.com/web/tweet-button)
