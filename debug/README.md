@@ -1,7 +1,7 @@
 # Debugging
 ## Problem statement
 The static app is hosted on GitHub Pages. Apparently, the map displays but has no interactive usability whatsoever.
-- The map style loads successfully but the vector tile layers stop responding to any event and after loading.
+- The map _style_ loads successfully but the _vector tile_ layers stop responding to any event and after loading.
 - Extremely slow/intermittant/no response at all to any events: crolling, dragging, clicking, and hovering
 - The main problem is probably in the receiving of _vector tiles_ and the loading of layers from the Mapbox API, similar to [this issue](https://github.com/mapbox/mapbox-gl-js/issues/4858). The data is either not received at all, doesn't load, or the receiving/loading process is so hefty that the app freezes.
 - All the features of the map app depend entirely upon the _vector tiles_ responding to events. So basically, the app is broken, as it doesn't do anything; it's just an image on the screen.
