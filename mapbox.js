@@ -14,7 +14,7 @@ map.on('style.load', () => {
     setPopups();
     setStyleSwitch();
 });
-
+// Adds map sources from Mapbox API
 function addSources() {
     map.addSource('bike-routes', {
         type: 'vector',
@@ -34,7 +34,7 @@ function addSources() {
         url: 'mapbox://chanversus.djorti0h'
     });
 }
-
+// Adds featured layers
 function loadLayers() {
     var layers = map.getStyle().layers;
     // Find the index of the first symbol layer in the map style
@@ -109,7 +109,7 @@ function loadLayers() {
         "filter": ["==", "Name", ""]
     },firstSymbolId);
 }
-
+// Sets toggle buttons to show/hide layers
 function setToggleLayers() {
     // Prepares data for layer toggling
     if (document.getElementById('bike-routes') === null) {
@@ -162,7 +162,7 @@ function setToggleLayers() {
         }
     }
 }
-
+// Sets box that highlights area and shows neighborhood information on hover
 function setNeighborhoodHighlight() {
     // Highlights neighborhood polygon on hover
     if (document.getElementById('neighborhoods').className === 'active') {
@@ -175,11 +175,11 @@ function setNeighborhoodHighlight() {
         // Reset neighborhood-fills-hover layer's filter when the mouse leaves the layer.
         map.on("mouseleave", "neighborhood-fills", function() {
             map.setFilter("neighborhood-fills-hover", ["==", "name", ""]);
-            document.getElementById('neighborhood-label').setAttribute('hidden');
+            document.getElementById('neighborhood-label').setAttribute('hidden', true);
         });
     }
 }
-
+// Sets popup box that shows location information on click
 function setPopups() {
     // Click to show popup with information about the venue
     map.on('click', function(e) {
@@ -238,7 +238,7 @@ function setPopups() {
         }
     });
 }
-
+// Sets buttons for switching between map styles
 function setStyleSwitch() {
     var styles = {
         'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
