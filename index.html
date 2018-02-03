@@ -11,15 +11,10 @@
 <!--Bootstrap API--><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--Bootstrap stylesheet--><link rel="stylesheet"   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--Font--><link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-<!--USE ME!!!!!!!!!!-->
-<!--Supercluster--><script src="https://unpkg.com/supercluster@3.0.2/dist/supercluster.min.js"></script>
-<!--Turf--><script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-<!--Leaflet API--><script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<!--Shapefile--><script src="https://unpkg.com/shapefile@0.6"></script>
 </head>
 
 <body>
-<h1>Bike Me</h1>
+<h1 id="headline">Bike Me</h1>
 <div id="map" role="main"></div>
 <div id='style-menu'>
   <input id='day' type='radio' name='rtoggle' value='day' checked='checked'>
@@ -73,7 +68,9 @@
 <circle cx="145" cy="38" r="9" stroke="black" stroke-width="8" fill="transparent" clip-path="url(#cut-off-bottom)" />
 </svg> 
 </div>
-<nav id="toggle-features"role="navigation"></nav><!--toggle-buttons-->
+<nav id="toggle-features"role="navigation">
+</nav><!--toggle-buttons-->
+<input type='button' id='hideshow' value='hide' class='showing'>
 <div class="container" id="modal-container" role="contentinfo">
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">About</button>
@@ -91,6 +88,7 @@
     <p>Use buttons on the upper left to show or hide markers.</p>
     <p>This map is made with Mapbox and NYC Open Data.</p>
     <a href="https://github.com/elainechan/mapping" target="_blank">Source code and documentation</a>
+    <br/>
     <a href="https://twitter.com/chanversus" target="_blank">Tweet at me</a>
   </div><!--.modal-body-->
   <div class="modal-footer">

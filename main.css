@@ -2,18 +2,13 @@ body {
     margin:0;
     padding:0;
     font-family: 'Roboto Mono', monospace;
-    /*
-    background-image: url('./bike-logo.png');
-    background-position: left top;
-    */
 }
 h1 {
     font-family: 'Roboto Mono', monospace;
     position: absolute;
     top: 0px;
     left: 15px;
-    display: inline-block;
-    z-index: 150000!important;
+    z-index: 1500000!important;
 }
 #map { 
   position:absolute;
@@ -52,6 +47,15 @@ html, body {
     height: 40px;
 }
 
+#hideshow {
+    width: 140px;
+    z-index: 5000!important;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Roboto Mono', monospace;
+}
+
 #style-menu {
     position: absolute;
     top: 0;
@@ -60,16 +64,15 @@ html, body {
     background: #fff;
     filter: opacity(0.8);
     padding: 10px;
-    font-family: 'Open Sans', sans-serif;
     z-index: 100;
     font-family: 'Roboto Mono', monospace;
 }
 
-#toggle-features {
+#toggle-features  {
         background: #fff;
         position: absolute;
         z-index: 4;
-        top: 10px;
+        top: 40px;
         right: 10px;
         border-radius: 3px;
         width: 140px;
@@ -126,3 +129,29 @@ html, body {
   bottom: 10px!important;
   position: absolute;
 }
+@media screen and (max-width: 600px) {
+    #logo {
+      visibility: hidden;
+    }
+    h1 {
+      visibility: hidden;
+    }
+    #hideshow {
+        width: 130px;
+    }
+    #toggle-features {
+        width: 130px;
+    }
+    #toggle-features a {
+        font-size: 12px!important;
+    }
+    .btn-info {
+        font-size: 12px!important;
+      }
+    #style-menu {
+        font-size: 12px;
+        top: 0;
+        left: 0;
+        width: 200px;
+    }
+  }

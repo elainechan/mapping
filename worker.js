@@ -11,3 +11,24 @@ function embedSVG(){
 	alert(whoName+" "+whoNow+"="+whoWhat)
 	*/
 }
+$(document).ready(function(){
+	$('#hideshow').on('click', function(event) {        
+		$('#style-menu').toggle('hide');
+		$('#toggle-features').toggle('hide');
+		$('#modal-container').toggle('hide');
+		$('#logo').toggle('hide');
+		$('h1').toggle('hide');
+		//$('#hideshow').toggleClass('hidden');
+		
+		if ($('#hideshow').hasClass('showing')) {
+			$('#hideshow').removeClass('showing');
+			$('#hideshow').addClass('hiding');
+			$('#hideshow').attr('value', 'show')
+		} else {
+			$('#hideshow').removeClass('hiding');
+			$('#hideshow').addClass('showing');
+			$('#hideshow').attr('value', 'hide')
+		}
+		
+	});
+});
