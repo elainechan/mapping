@@ -1,4 +1,4 @@
-![Bike logo](./bike-logo.png) 
+![Bike logo](./assets/bike-logo-white.png) 
 # Bike Me: NYC Map for Cyclists and Pedestrians
 Doing my bit to make NYC more accessibly to the masses ... a map containing granular local information for biking and walking the city. This stuff is rarely found on commercial maps, at least in my experience. I'd love to know if there are other sources out there. 
 
@@ -25,10 +25,10 @@ Also, let me know if the app is painfully slow ... not that I can do anything ab
 	- North Star: a nautical navigation map with ocean depth contours; looks better far out than zoomed in.
 ## Usage
 Click on a symbol to see more information about it.
-![Popup box](./popup.png)
+![Popup box](./assets/popup.png)
 Press the buttons on the upper left corner to show or hide features.
-![Toggle on](./toggle-on.png)
-![Toggle off](./toggle-off.png)
+![Toggle on](./assets/toggle-on.png)
+![Toggle off](./assets/toggle-off.png)
 ## Main Tools
 - [NYC Open Data](http://www.nyc.gov/html/dot/html/about/datafeeds.shtml#bikes)
 - [Mapbox GL JS API](https://www.mapbox.com/mapbox-gl-js/api/)
