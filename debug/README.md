@@ -6,7 +6,9 @@ The static app is hosted on GitHub Pages. Apparently, the map displays but has n
 - The main problem is probably in the receiving of _vector tiles_ and the loading of layers from the Mapbox API, similar to [this issue](https://github.com/mapbox/mapbox-gl-js/issues/4858). The data is either not received at all, doesn't load, or the receiving/loading process is so hefty that the app freezes.
 - All the features of the map app depend entirely upon the _vector tiles_ responding to events. So basically, the app is broken, as it doesn't do anything; it's just an image on the screen.
 ## Warning message from Chrome
-- `Blink deferred a task in order to make scrolling smoother. Your timer and network tasks should take less than 50ms to run to avoid this. Please see https://developers.google.com/web/tools/chrome-devtools/profile/evaluate-performance/rail and https://crbug.com/574343#c40 for more information.`
+```
+Blink deferred a task in order to make scrolling smoother. Your timer and network tasks should take less than 50ms to run to avoid this. Please see https://developers.google.com/web/tools/chrome-devtools/profile/evaluate-performance/rail and https://crbug.com/574343#c40 for more information.
+```
 ## Symptoms in ~400 seconds of runtime
 - Response to _scrolling_ (zoom) and _dragging_ (move around) - works once or twice
 - Response to _clicking_ on features - works once or twice only on a small area of the map
@@ -57,6 +59,6 @@ Actor.receive @ blob:https://elainechan.github.io/7ffe1020-f010-4fd2-8d07-8dfa3e
 - [source_cache.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/source/source_cache.js)
 - [vector_tile_source.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/source/vector_tile_source.js)
 ## Tutorials and resources
-- [](https://bugs.chromium.org/p/chromium/issues/detail?id=574343#c40)
+- [issue example](https://crbug.com/574343#c40)
 - [Chrome performance analysis](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference)
 - [RAIL model](https://developers.google.com/web/fundamentals/performance/rail)
