@@ -1,16 +1,4 @@
-function embedSVG(){
-	let doc = document.getElementById("logo");
-	let svgDoc= doc.getSVGDocument()
-  	let svgRoot= svgDoc.documentElement
-	/*
-	let who = svgRoot.firstChild.nextSibling
-    let whoName = "<" + who.nodeName
-    let whoHow = who.attributes.item(0)
-    let whoNow = whoHow.nodeName
- 	let whoWhat = whoHow.nodeValue+">"
-	alert(whoName+" "+whoNow+"="+whoWhat)
-	*/
-}
+// Show/hide controls and branding assets for a decluttered screen
 $(document).ready(function(){
 	$('#hideshow').on('click', function(event) {        
 		$('#style-menu').toggle('hide');
@@ -18,8 +6,6 @@ $(document).ready(function(){
 		$('#modal-container').toggle('hide');
 		$('#logo').toggle('hide');
 		$('h1').toggle('hide');
-		//$('#hideshow').toggleClass('hidden');
-		
 		if ($('#hideshow').hasClass('showing')) {
 			$('#hideshow').removeClass('showing');
 			$('#hideshow').addClass('hiding');
