@@ -17,9 +17,9 @@ Blink deferred a task in order to make scrolling smoother. Your timer and networ
 ## Diagnosis
 1. Repeating offender: `Animation Frame Fired` (browser/browser.js 30) recurring handler often takes more than 60ms
 - [browser.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/util/browser.js)
-![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen Shot 2018-02-02 at 2.20.48 PM.png)
+![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen_2018-02-02_2.20.48PM.png)
 - Another suspect: image loading (possibly sprite icons?)
-![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen Shot 2018-02-02 at 3.07.43 PM.png)
+![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen_2018-02-02_3.07.43PM.png)
 - Recurring error: this error comes up a dozen of times during each run.
 ```
 Error: Error
@@ -31,9 +31,9 @@ t._tileLoaded	@	source_cache.js:238
 i	@	vector_tile_source.js:125
 Actor.receive	@	actor.js:81
 ```
-![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen Shot 2018-02-03 at 1.48.55 AM.png)
+![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen_2018-02-03_1.48.55AM.png)
 - Loading failures: it seems like most of the offending files are `pbf` custom vector tiles I made on Mapbox Studio by uploading data.
-![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen Shot 2018-02-03 at 1.50.06 AM.png)
+![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen_2018-02-03_1.50.06AM.png)
 
 ```
 blob:https://elainechan.github.io/7ffe1020-f010-4fd2-8d07-8dfa3eadcaa1:328 XHR failed loading: GET "https://a.tiles.mapbox.com/v4/chanversus.40louhe4/10/300/384.vector.pbf?access_token=pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg".
