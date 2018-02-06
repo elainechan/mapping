@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg';
+mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
@@ -26,7 +26,7 @@ function addSources() {
     });
 }
 // Adds featured layers
-function loadLayers() {
+function addLayers() {
     var layers = map.getStyle().layers;
     // Find the index of the first symbol layer in the map style
     // Ensure featured icons display visibly above other layers
@@ -101,7 +101,7 @@ function loadLayers() {
     },firstSymbolId);
 }
 
-const toggleableLayers = [
+const LAYERS = [
     {
         'name': 'bike-routes',
         'items': ['bike-routes']
@@ -132,7 +132,7 @@ function showLayer(layerName) {
 // Creates toggle buttons
 function createToggleButtons() {
     const layers = document.getElementById('toggle-features');
-    toggleableLayers.forEach((layer) => {
+    LAYERS.forEach((layer) => {
         const link = document.createElement('a');
         link.href = '#';
         link.className = 'active toggle-layer';
@@ -147,7 +147,7 @@ function retainToggleLayersState() {
     let links = layers.getElementsByTagName('a');
     Array.from(links).forEach((link) => {
         let clickedName = link.textContent.replace(/ /, '-'); // Adds hyphen for manipulation
-        let chosenLayer = toggleableLayers.filter((obj) => {
+        let chosenLayer = LAYERS.filter((obj) => {
             return obj.name === clickedName;
         }); // Toggle features
         if (link.classList.contains('active')) { // If button is dark
@@ -166,7 +166,7 @@ function setHandleToggleButtonClick() {
             e.preventDefault();
             e.stopPropagation();
             var clickedName = this.textContent.replace(/ /, '-'); // Re-add hyphen tomanipulate
-            let chosenLayer = toggleableLayers.filter((obj) => {
+            let chosenLayer = LAYERS.filter((obj) => {
                 return obj.name === clickedName;
             }); // Toggle features
             if (document.getElementById(clickedName).classList.contains('active')) { // If 'on'
@@ -180,7 +180,7 @@ function setHandleToggleButtonClick() {
     });
 }
 // Sets toggle layers
-function setToggleLayers() {
+function setLayerToggling() {
     if (!document.getElementsByClassName('toggle-layer').length) { // If buttons don't exist, create
         createToggleButtons();
     } else { // If buttons exist, set layers according to buttons state
@@ -191,7 +191,6 @@ function setToggleLayers() {
 
 // Sets box that highlights area and shows neighborhood information on hover
 function setNeighborhoodHighlight() {
-    // Highlights neighborhood polygon on hover
     if (document.getElementById('neighborhoods').className === 'active') {
         map.on("mousemove", "neighborhood-fills", function(e) {
             let features = map.queryRenderedFeatures(e.point);
@@ -267,7 +266,7 @@ function setPopups() {
 }
 // Sets buttons for switching between map styles
 function setStyleSwitch() {
-    var styles = {
+    const STYLES = {
         'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
         'night': 'mapbox://styles/mapbox/navigation-preview-night-v2',
         'streets': 'mapbox://styles/mapbox/streets-v10',
@@ -285,14 +284,14 @@ function setStyleSwitch() {
     let inputs = layerList.getElementsByTagName('input');
     Array.from(inputs).forEach((item) => { // Use `from` to iterate element
         item.onclick = () => {
-            map.setStyle(styles[item.id]);
+            map.setStyle(STYLES[item.id]);
         }
     });
 }
 map.on('style.load', () => {
     addSources();
-    loadLayers();
-    setToggleLayers();
+    addLayers();
+    setLayerToggling();
     setNeighborhoodHighlight();
     setPopups();
     setStyleSwitch();

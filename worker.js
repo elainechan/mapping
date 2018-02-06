@@ -15,6 +15,5 @@ $(document).ready(function(){
 			$('#hideshow').addClass('showing');
 			$('#hideshow').attr('value', 'hide')
 		}
-		
 	});
 });
