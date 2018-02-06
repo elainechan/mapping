@@ -5,15 +5,6 @@ var map = new mapboxgl.Map({
     center: [-74.0018, 40.7243],
     zoom: 10
 });
-
-map.on('style.load', () => {
-    addSources();
-    loadLayers();
-    setToggleLayers();
-    setNeighborhoodHighlight();
-    setPopups();
-    setStyleSwitch();
-});
 // Adds map sources from Mapbox API
 function addSources() {
     map.addSource('bike-routes', {
@@ -40,7 +31,7 @@ function loadLayers() {
     // Find the index of the first symbol layer in the map style
     // Ensure featured icons display visibly above other layers
     var firstSymbolId;
-    for (var i = 0; i < layers.length; i++) {
+    for (let i = 0; i < layers.length; i += 1) {
         if (layers[i].type === 'symbol') {
             firstSymbolId = layers[i].id;
             break;
@@ -109,59 +100,95 @@ function loadLayers() {
         "filter": ["==", "Name", ""]
     },firstSymbolId);
 }
-// Sets toggle buttons to show/hide layers
-function setToggleLayers() {
-    // Prepares data for layer toggling
-    if (document.getElementById('bike-routes') === null) {
-        var toggleableLayers = [
-            {
-                'name': 'bike-routes',
-                'items': ['bike-routes']
-            },
-            {
-                'name':'bike-parking',
-                'items': ['bike-parking']
-            },
-            {
-                'name': 'neighborhoods',
-                'items': ['neighborhood-boundaries', 'neighborhood-fills', 'neighborhood-fills-hover'],
-            },
-            {
-                'name': 'public-benches',
-                'items': ['public-benches']
-            }
-        ];
-        for (var i = 0; i < toggleableLayers.length; i++) {
-            var layer = toggleableLayers[i];
-            var link = document.createElement('a');
-            link.href = '#';
-            link.className = 'active toggle-layer';
-            link.id = layer.name;
-            link.textContent = layer.name.replace(/-/, ' '); // Display in browser with hyphen removed
-            link.onclick = function (e) {
-                var clickedLayerName = this.textContent.replace(/ /, '-'); // Re-add hyphen to manipulate
-                e.preventDefault();
-                e.stopPropagation();
-                var chosenLayer = toggleableLayers.filter((obj) => {
-                    return obj.name === clickedLayerName;
-                }); // Toggle features
-                if (document.getElementById(clickedLayerName).className === 'active') { // Feature is 'on'
-                    document.getElementById(clickedLayerName).className = '';
-                    chosenLayer[0].items.forEach((layerItem) => {
-                        map.setLayoutProperty(layerItem, 'visibility', 'none');
-                    }); 
-                } else {
-                    document.getElementById(clickedLayerName).className = 'active';
-                    chosenLayer[0].items.forEach((layerItem) => {
-                        map.setLayoutProperty(layerItem, 'visibility', 'visible');
-                    });
-                }
-            }
-            var layers = document.getElementById('toggle-features');
-            layers.appendChild(link);
-        }
+
+const toggleableLayers = [
+    {
+        'name': 'bike-routes',
+        'items': ['bike-routes']
+    },
+    {
+        'name':'bike-parking',
+        'items': ['bike-parking']
+    },
+    {
+        'name': 'neighborhoods',
+        'items': ['neighborhood-boundaries', 'neighborhood-fills', 'neighborhood-fills-hover'],
+    },
+    {
+        'name': 'public-benches',
+        'items': ['public-benches']
     }
+];
+function hideLayer(layerName) {
+    layerName[0].items.forEach((layerItem) => {
+        map.setLayoutProperty(layerItem, 'visibility', 'none');
+    }); 
 }
+function showLayer(layerName) {
+    layerName[0].items.forEach((layerItem) => {
+        map.setLayoutProperty(layerItem, 'visibility', 'visible');
+    });
+}
+// Creates toggle buttons
+function createToggleButtons() {
+    const layers = document.getElementById('toggle-features');
+    toggleableLayers.forEach((layer) => {
+        const link = document.createElement('a');
+        link.href = '#';
+        link.className = 'active toggle-layer';
+        link.id = layer.name;
+        link.textContent = layer.name.replace(/-/, ' '); // Remove hyphen to display in browser
+        layers.appendChild(link);
+    });
+}
+// Remembers state of toggled feature layers
+function retainToggleLayersState() {
+    let layers = document.getElementById('toggle-features');
+    let links = layers.getElementsByTagName('a');
+    Array.from(links).forEach((link) => {
+        let clickedName = link.textContent.replace(/ /, '-'); // Adds hyphen for manipulation
+        let chosenLayer = toggleableLayers.filter((obj) => {
+            return obj.name === clickedName;
+        }); // Toggle features
+        if (link.classList.contains('active')) { // If button is dark
+            showLayer(chosenLayer);
+        } else {
+            hideLayer(chosenLayer);
+        }
+    });
+}
+// Sets event handler for feature layer buttons
+function setHandleToggleButtonClick() {
+    let layers = document.getElementById('toggle-features');
+    let links = layers.getElementsByTagName('a');
+    Array.from(links).forEach((link) => {
+        link.onclick = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var clickedName = this.textContent.replace(/ /, '-'); // Re-add hyphen tomanipulate
+            let chosenLayer = toggleableLayers.filter((obj) => {
+                return obj.name === clickedName;
+            }); // Toggle features
+            if (document.getElementById(clickedName).classList.contains('active')) { // If 'on'
+                document.getElementById(clickedName).classList.remove('active');
+                hideLayer(chosenLayer);
+            } else { // If 'off'
+                document.getElementById(clickedName).classList.add('active');
+                showLayer(chosenLayer);
+            }
+        }
+    });
+}
+// Sets toggle layers
+function setToggleLayers() {
+    if (!document.getElementsByClassName('toggle-layer').length) { // If buttons don't exist, create
+        createToggleButtons();
+    } else { // If buttons exist, set layers according to buttons state
+        retainToggleLayersState();
+    }
+    setHandleToggleButtonClick();
+}
+
 // Sets box that highlights area and shows neighborhood information on hover
 function setNeighborhoodHighlight() {
     // Highlights neighborhood polygon on hover
@@ -173,7 +200,7 @@ function setNeighborhoodHighlight() {
             document.getElementById('neighborhood-label').innerHTML = JSON.stringify(e.features[0].properties.Name, null, 2)
         });
         // Reset neighborhood-fills-hover layer's filter when the mouse leaves the layer.
-        map.on("mouseleave", "neighborhood-fills", function() {
+        map.on("mouseleave", "neighborhood-fills", () => {
             map.setFilter("neighborhood-fills-hover", ["==", "name", ""]);
             document.getElementById('neighborhood-label').setAttribute('hidden', true);
         });
@@ -182,7 +209,7 @@ function setNeighborhoodHighlight() {
 // Sets popup box that shows location information on click
 function setPopups() {
     // Click to show popup with information about the venue
-    map.on('click', function(e) {
+    map.on('click', (e) => {
         let features = map.queryRenderedFeatures(e.point);
         if (features[0].layer.type === 'symbol' && features[0].geometry.type === 'Point') {
             // Places with 'names' key in lowercase
@@ -254,15 +281,19 @@ function setStyleSwitch() {
         'satellite': 'mapbox://styles/mapbox/satellite-v9',
         'satellite-streets': 'mapbox://styles/mapbox/satellite-streets-v10',
     }
-    var layerList = document.getElementById('style-menu');
-    var inputs = layerList.getElementsByTagName('input');
-    function switchLayer(name) {
-        map.setStyle(styles[name]);
-    }
-    Array.from(inputs).forEach(function(item) {
+    let layerList = document.getElementById('style-menu');
+    let inputs = layerList.getElementsByTagName('input');
+    Array.from(inputs).forEach((item) => { // Use `from` to iterate element
         item.onclick = () => {
-            //alert()
-            switchLayer(item.id);
+            map.setStyle(styles[item.id]);
         }
     });
 }
+map.on('style.load', () => {
+    addSources();
+    loadLayers();
+    setToggleLayers();
+    setNeighborhoodHighlight();
+    setPopups();
+    setStyleSwitch();
+});

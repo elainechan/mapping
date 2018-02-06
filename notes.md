@@ -1,7 +1,6 @@
 # Project Notes
 ## TODO
-- [ ] Destroy and rebuild layer toggle menus on `style.load`.
-    - Right now it's janky; sometimes buttons are off while features are visible, even though it corrects after pressing the buttons a few times. 
+- [x] Retain feature layer visibility state when switching map style.
 - [x] Make UI responsive for mobile.
 - [x] Drop-down menu for full list of map styles.
 - [ ] Metadata panel toggle.
@@ -20,7 +19,7 @@
 - [x] MODAL: 'about this project', 'contact'
 ## Readding Custom Layers After Style Switch
 - [Add custom layers on style switch, Mike Bostock](https://bl.ocks.org/ryanbaumann/7f9a353d0a1ae898ce4e30f336200483/96bea34be408290c161589dcebe26e8ccfa132d7)
-9 [Github issue on switching styles and retaining layers](https://github.com/mapbox/mapbox-gl-js/issues/3979)
+- [Github issue on switching styles and retaining layers](https://github.com/mapbox/mapbox-gl-js/issues/3979)
 ## Manipulating `HTMLCollection` With `Array.from().forEach()`
 - [Iterate over a nodeList or HTMLCollection](https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements/22754453)
 - BONUS: checking if element exists in the DOM: `alert` `document.getElementById('bike-routes')` and if it doesn't exist the output is `null`.

@@ -1,4 +1,5 @@
 # Debugging
+* Look into `loadLayers` function's `firstSymbolId` business.
 ## Problem statement
 The static app is hosted on GitHub Pages. Apparently, the map displays but has no interactive usability whatsoever.
 - The map _style_ loads successfully but the _vector tile_ layers stop responding to any event and after loading.
