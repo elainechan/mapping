@@ -1,4 +1,4 @@
-mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamRiMHp5NWMwMzdhMzNwbGFuOGdseWowIn0.Bbgi_5xpZpjBjYL8bZ__EA';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "d3": "^4.12.2",
+    "dotenv": "^5.0.0",
     "json-2-csv": "^2.1.2",
     "twit": "^2.2.9",
     "twitter": "^1.7.1"
