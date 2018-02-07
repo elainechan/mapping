@@ -1,11 +1,14 @@
 # Debugging
-* Look into `loadLayers` function's `firstSymbolId` business.
+Same behavior in Chrome 63 and Firefox Developer Edition 59.
+
+
 ## Problem statement
 The static app is hosted on GitHub Pages. Apparently, the map displays but has no interactive usability whatsoever.
 - The map _style_ loads successfully but the _vector tile_ layers stop responding to any event and after loading.
 - Extremely slow/intermittant/no response at all to any events: crolling, dragging, clicking, and hovering
 - The main problem is probably in the receiving of _vector tiles_ and the loading of layers from the Mapbox API, similar to [this issue](https://github.com/mapbox/mapbox-gl-js/issues/4858). The data is either not received at all, doesn't load, or the receiving/loading process is so hefty that the app freezes.
 - All the features of the map app depend entirely upon the _vector tiles_ responding to events. So basically, the app is broken, as it doesn't do anything; it's just an image on the screen.
+
 ## Warning message from Chrome
 ```
 Blink deferred a task in order to make scrolling smoother. Your timer and network tasks should take less than 50ms to run to avoid this. Please see https://developers.google.com/web/tools/chrome-devtools/profile/evaluate-performance/rail and https://crbug.com/574343#c40 for more information.
@@ -15,7 +18,38 @@ Blink deferred a task in order to make scrolling smoother. Your timer and networ
 - Response to _clicking_ on features - works once or twice only on a small area of the map
 - RespShow neighborhood info _on hover_ - works once or twice
 - Response to switch styles _on click_ - ALWAYS works (which means the loading of map _styles_ is working)
-## Diagnosis
+## Firefox error log
+- Similar error as Chrome reported
+```
+Error
+​
+columnNumber: 894
+​
+fileName: "https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"
+​
+lineNumber: 501
+​
+message: "Error"
+​
+stack: "[250]</Actor.prototype.receive@https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js:501:894\n"
+​
+__proto__: Object { … }
+evented.js:109:8
+[260]</Evented.prototype.fire
+evented.js:109:8
+[260]</Evented.prototype.fire
+evented.js:103:16
+[260]</Evented.prototype.fire
+evented.js:103:16
+[111]</SourceCache</t.prototype._tileLoaded
+source_cache.js:238:36
+i
+vector_tile_source.js:125:23
+[250]</Actor.prototype.receive
+actor.js:81:16
+```
+![Sreenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen_2018-02-07_2.49.24PM.png)
+## Chrome performance report
 1. Repeating offender: `Animation Frame Fired` (browser/browser.js 30) recurring handler often takes more than 60ms
 - [browser.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/util/browser.js)
 ![Screenshot](https://github.com/elainechan/mapping/blob/master/debug/Screen_2018-02-02_2.20.48PM.png)
