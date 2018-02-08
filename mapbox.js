@@ -7,64 +7,83 @@ var map = new mapboxgl.Map({
 });
 // Adds map sources from Mapbox API
 function addSources() {
-    map.addSource('bike-routes', {
-        type: 'vector',
-        url: 'mapbox://chanversus.b4y2ijie'
-    });
-    map.addSource('bike-parking', {
-        type: 'vector',
-        url: 'mapbox://chanversus.40louhe4'
-    });
     map.addSource('public-benches', {
         type: 'vector',
         url: 'mapbox://chanversus.bal31raj'
     });
-    map.addSource('neighborhoods', {
-        type: 'vector',
-        //url: 'mapbox://chanversus.3eevjveq'
-        url: 'mapbox://chanversus.djorti0h'
-    });
 }
 // Adds featured layers
 function addLayers() {
-    var layers = map.getStyle().layers;
     map.addLayer({
-        'id': 'neighborhood-boundaries',
-        'type': 'line',
-        'source': 'neighborhoods',
-        //'source-layer': 'Neighborhood_Tabulation_Areas-095e1p',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'line-color': '#000000',
-            'line-width': 1.75
-        }
-    });
-    map.addLayer({
-        'id': 'neighborhood-fills',
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'fill-color': '#dc7633',
-            'fill-opacity': 0.1
+        'id': 'public-benches',
+        'type': 'symbol',
+        'source': 'public-benches',
+        'source-layer': '2016-citybench-401mrx',
+        'layout': {
+            'icon-image': 'triangle-11',
         }
     });
 }
-
-// Sets box that highlights area and shows neighborhood information on hover
-function setNeighborhoodLabels() {
-    map.on("mousemove", "neighborhood-fills", function(e) {
+function setPopups() {
+    // Click to show popup with information about the venue
+    map.on('click', (e) => {
         let features = map.queryRenderedFeatures(e.point);
-        document.getElementById('neighborhood-label').removeAttribute('hidden');
-        document.getElementById('neighborhood-label').innerHTML = JSON.stringify(e.features[0].properties.Name, null, 2)
-    });
-    // Reset neighborhood-fills-hover layer's filter when the mouse leaves the layer.
-    map.on("mouseleave", "neighborhood-fills", () => {
-        document.getElementById('neighborhood-label').setAttribute('hidden', true);
+        if (features[0].layer.type === 'symbol' && features[0].geometry.type === 'Point') {
+            // Places with 'names' key in lowercase
+            if (features[0].properties.name) {
+                // Rail stations
+                if (features[0].layer.id === 'rail-label') {
+                    let network = features[0].properties.network.replace(/-/g, ' ');
+                    new mapboxgl.Popup()
+                    .setLngLat(features[0].geometry.coordinates)
+                    .setHTML(`<h5>${features[0].properties.name}</h5><p>${network} station</p>`)
+                    .addTo(map);
+                } else if (features[0].properties.name_en) { // Multilingual listing
+                    if (features[0].properties.type) {
+                        new mapboxgl.Popup()
+                        .setLngLat(features[0].geometry.coordinates)
+                        .setHTML(`<h5>${features[0].properties.name_en}</h5><p>${features[0].properties.type}</p>`)    
+                        .addTo(map);
+                    } else {
+                        new mapboxgl.Popup()
+                        .setLngLat(features[0].geometry.coordinates)
+                        .setHTML(`<h5>${features[0].properties.name_en}</h5>`)    
+                        .addTo(map);
+                    }
+                } else {
+                    new mapboxgl.Popup()
+                    .setLngLat(features[0].geometry.coordinates)
+                    .setHTML(`<h5>${features[0].properties.name}</h5><p>${features[0].properties.type}</p>`)    
+                    .addTo(map);
+                }
+            } else if (features[0].properties.Name) { // Places with 'Name' key capitalized
+                if (features[0].layer.id === 'bike-parking') { // Bike parking is notable for this
+                    new mapboxgl.Popup()
+                    .setLngLat(features[0].geometry.coordinates)
+                    .setHTML(`<h5>Bicycle parking</h5><p>${features[0].properties.Name}</p><p>Total racks: ${features[0].properties.total_rack}</p>`)
+                    .addTo(map);
+                } else if (features[0].properties.type) { // Other places 
+                    new mapboxgl.Popup()
+                    .setLngLat(features[0].geometry.coordinates)
+                    .setHTML(`<h5>${features[0].properties.Name}</h5><p>${features[0].properties.type}</p>`)
+                    .addTo(map);
+                }
+            } else if (features[0].layer.id === 'public-benches') { // Benches have no 'name' field
+                    new mapboxgl.Popup()
+                    .setLngLat(features[0].geometry.coordinates)
+                    .setHTML(`<h5>Public bench</h5><p>${features[0].properties.Address}, between ${features[0].properties.X_Street}</p><p>Type: ${features[0].properties.Type}</p>`)
+                    .addTo(map);
+            } else { // no name
+                    new mapboxgl.Popup()
+                    .setLngLat(features[0].properties.type)
+                    .setHTML(`<p>${features[0].properties.type}</p>`)
+                    .addTo(map);
+            }
+        }
     });
 }
 map.on('style.load', () => {
     addSources();
     addLayers();
-    setNeighborhoodLabels();
+    setPopups();
 });
