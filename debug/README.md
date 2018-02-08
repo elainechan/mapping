@@ -88,6 +88,34 @@ Worker.loadTile @ blob:https://elainechan.github.io/7ffe1020-f010-4fd2-8d07-8dfa
 Actor.receive @ blob:https://elainechan.github.io/7ffe1020-f010-4fd2-8d07-8dfa3eadcaa1:326
 01:47:50.325
 ```
+---
+# Minimal App Scenarios
+
+## Single-Feature Only
+- Isolating each feature
+    - No interactive events
+    - With interactive events
+- Same errors persist in each version:
+    - `Neighborhoods` only - `actor.js` error and `failed loading` persists;
+        - [non-interactive neighborhoods fiddle](https://jsfiddle.net/elainechan/1tx1qf9s/)
+        - [interactive neighborhoods fiddle](https://jsfiddle.net/elainechan/1zyq2p6s/)
+    - `Bike routes` only - `actor.js` error and `failed loading` persists;
+        - [non-interactive bike routes fiddle](https://jsfiddle.net/elainechan/280fm0f5/)
+        - interactive events don't apply to this feature
+    - `Bike parking` only ([fiddle](https://jsfiddle.net/elainechan/994rx5ns/)) - `actor.js` error and `failed loading` persists;
+        - [non-interactive bike parking fiddle](https://jsfiddle.net/elainechan/994rx5ns/)
+        - [interactive bike parking fiddle](https://jsfiddle.net/elainechan/7sbx9mm0/)
+    - `Public benches` only - `actor.js` error and `failed loading` persists;
+        - [non-interactive public benches fiddle](https://jsfiddle.net/elainechan/6u7eky8f/)
+        - [interactive public benches fiddle](https://jsfiddle.net/elainechan/evo1wfc1/)
+
+### Persisting errors
+- Expectations met but 
+1. Previous `actor.js` error persists
+2. `failed loading` persists
+
+![Screenshot](https://github.com/elainechan/mapping/blob/minimal/debug/Screen_2018-02-07_8.28.58PM)
+
 ## Sources
 - [evented.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/util/evented.js)
 - [actor.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/util/actor.js)
