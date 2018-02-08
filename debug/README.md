@@ -88,6 +88,18 @@ Worker.loadTile @ blob:https://elainechan.github.io/7ffe1020-f010-4fd2-8d07-8dfa
 Actor.receive @ blob:https://elainechan.github.io/7ffe1020-f010-4fd2-8d07-8dfa3eadcaa1:326
 01:47:50.325
 ```
+---
+## Minimal App Scenario
+- App contains only `Neighborhoods` feature.
+- Expected behavior:
+    - Display popup `on hover`.
+### Persisting errors
+- Expectations met but 
+1. Previous `actor.js` error persists
+2. Failure to load persists
+
+![Screenshot](https://github.com/elainechan/mapping/blob/minimal/debug/Screen_2018-02-07_8.28.58PM)
+
 ## Sources
 - [evented.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/util/evented.js)
 - [actor.js](https://github.com/mapbox/mapbox-gl-js/blob/master/src/util/actor.js)
