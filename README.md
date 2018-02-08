@@ -1,9 +1,7 @@
 ![Bike logo](./assets/bike-logo-white.png)
-- Note: there is a breaking issue with the API access; some features might not work at the moment. Awaiting feedback from Mapbox to resolve [issue](https://github.com/mapbox/mapbox-gl-js/issues/6094).
+- Note: there is a breaking [issue](https://github.com/mapbox/mapbox-gl-js/issues/6094) with the API access; some features might not work at the moment. Awaiting feedback from Mapbox to resolve.
 # Bike Me: NYC Map for Cyclists and Pedestrians
-Doing my bit to make NYC more accessibly to the masses ... a map containing granular local information for biking and walking the city. This stuff is rarely found on commercial maps, at least in my experience. I'd love to know if there are other sources out there. 
-
-Also, let me know if the app is painfully slow ... not that I can do anything about it unless I run my own server, but it's good to know I'm not alone.
+Doing my bit to make NYC more accessible to the masses ... a map containing granular local information for biking and walking the city. This stuff is rarely found on commercial maps, at least in my experience. I'd love to know if there are other sources out there. 
 
 # [Check it out](https://elainechan.github.io/mapping/)
 ## Current Features
