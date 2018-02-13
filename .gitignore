@@ -9,3 +9,4 @@ config1.js
 config.sh
 .vscode/
 .env
+debug/.DS_Store

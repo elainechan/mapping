@@ -19,11 +19,6 @@ function addSources() {
         type: 'vector',
         url: 'mapbox://chanversus.bal31raj'
     });
-    map.addSource('neighborhoods', {
-        type: 'vector',
-        //url: 'mapbox://chanversus.3eevjveq'
-        url: 'mapbox://chanversus.djorti0h'
-    });
 }
 // Adds featured layers
 function addLayers() {
@@ -67,38 +62,6 @@ function addLayers() {
             'icon-image': 'triangle-11',
         }
     });
-    map.addLayer({
-        'id': 'neighborhood-boundaries',
-        'type': 'line',
-        'source': 'neighborhoods',
-        //'source-layer': 'Neighborhood_Tabulation_Areas-095e1p',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'line-color': '#000000',
-            'line-width': 1.75
-        }
-    }, firstSymbolId);
-    map.addLayer({
-        'id': 'neighborhood-fills',
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'fill-color': '#dc7633',
-            'fill-opacity': 0.1
-        }
-    },firstSymbolId);
-    map.addLayer({
-        'id': 'neighborhood-fills-hover',
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'fill-color': '#e59866',
-            'fill-opacity': 0.4
-        },
-        "filter": ["==", "Name", ""]
-    },firstSymbolId);
 }
 
 const LAYERS = [
@@ -109,10 +72,6 @@ const LAYERS = [
     {
         'name':'bike-parking',
         'items': ['bike-parking']
-    },
-    {
-        'name': 'neighborhoods',
-        'items': ['neighborhood-boundaries', 'neighborhood-fills', 'neighborhood-fills-hover'],
     },
     {
         'name': 'public-benches',
@@ -187,23 +146,6 @@ function setLayerToggling() {
         retainToggleLayersState();
     }
     setHandleToggleButtonClick();
-}
-
-// Sets box that highlights area and shows neighborhood information on hover
-function setNeighborhoodHighlight() {
-    if (document.getElementById('neighborhoods').className === 'active') {
-        map.on("mousemove", "neighborhood-fills", function(e) {
-            let features = map.queryRenderedFeatures(e.point);
-            map.setFilter("neighborhood-fills-hover", ["==", "Name", e.features[0].properties.Name]);
-            document.getElementById('neighborhood-label').removeAttribute('hidden');
-            document.getElementById('neighborhood-label').innerHTML = JSON.stringify(e.features[0].properties.Name, null, 2)
-        });
-        // Reset neighborhood-fills-hover layer's filter when the mouse leaves the layer.
-        map.on("mouseleave", "neighborhood-fills", () => {
-            map.setFilter("neighborhood-fills-hover", ["==", "name", ""]);
-            document.getElementById('neighborhood-label').setAttribute('hidden', true);
-        });
-    }
 }
 // Sets popup box that shows location information on click
 function setPopups() {
@@ -292,7 +234,6 @@ map.on('style.load', () => {
     addSources();
     addLayers();
     setLayerToggling();
-    setNeighborhoodHighlight();
     setPopups();
     setStyleSwitch();
 });
