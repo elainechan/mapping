@@ -7,7 +7,7 @@ h1 {
     font-family: 'Roboto Mono', monospace;
     position: absolute;
     top: 0px;
-    left: 15px;
+    left: 10px;
     z-index: 1500000!important;
 }
 #map { 
@@ -117,12 +117,14 @@ html, body {
   bottom: 10px!important;
   position: absolute;
 }
-@media screen and (max-width: 600px) {
-    #logo {
-      visibility: hidden;
-    }
+@media screen and (max-width: 1020px) and (min-width: 700px) {
     h1 {
-      visibility: hidden;
+        font-size: 30px!important;
+    }
+    #logo-container {
+        position: absolute;
+        top: 56px;
+        left: 10px;
     }
     #hideshow {
         width: 130px;
@@ -138,6 +140,57 @@ html, body {
       }
     #style-menu {
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 700px) and (min-width: 500px) {
+    #logo {
+        visibility: hidden;
+    }
+    h1 {
+        visibility: hidden;
+    }
+    #hideshow {
+        width: 116px;
+    }
+    #toggle-features {
+        width: 116px;
+    }
+    #toggle-features a {
+        font-size: 11px!important;
+    }
+    .btn-info {
+        font-size: 12px!important;
+    }
+    #style-menu {
+        font-size: 11px;
+        top: 0;
+        left: 0;
+        width: 320px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #logo {
+      visibility: hidden;
+    }
+    h1 {
+      visibility: hidden;
+    }
+    #hideshow {
+        width: 116px;
+    }
+    #toggle-features {
+        width: 116px;
+    }
+    #toggle-features a {
+        font-size: 11px!important;
+    }
+    .btn-info {
+        font-size: 12px!important;
+      }
+    #style-menu {
+        font-size: 11px;
         top: 0;
         left: 0;
         width: 200px;

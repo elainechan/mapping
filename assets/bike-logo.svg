@@ -1,4 +1,4 @@
-<svg id="logo" viewBox="0 0 960 560" preserveAspectRatio="xMinYMin meet">
+<svg version="1.1" id="logo" viewBox="0 0 960 560" preserveAspectRatio="xMinYMin meet">
     <circle id="back-wheel" cx="50" cy="100" r="40" stroke="black" stroke-width="8" fill="transparent" />
     <circle id="front-wheel" cx="150" cy="100" r="40" stroke="black" stroke-width="8" fill="transparent" /> 
     
