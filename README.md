@@ -1,8 +1,8 @@
 ![Bike logo](./assets/bike-logo-white.png)
 # Bike Me: NYC Map for Cyclists and Pedestrians
-Doing my bit to make NYC more accessible to the masses ... a map containing granular local information for biking and walking the city. This stuff is rarely found on commercial maps, at least in my experience. I'd love to know if there are other sources out there. 
+In hope of making NYC more accessible to cyclists and pedestrians, this map provides rare granular local information for biking and walking the city, using NYC Open Data. 
 
-# [Use it](https://elainechan.github.io/mapping/) (it's currently [broken](https://github.com/mapbox/mapbox-gl-js/issues/6094) but hopefully won't be long)
+# [Use it](https://elainechan.github.io/mapping/)
 
 # [Play with the code](https://jsfiddle.net/elainechan/bnraathg/)
 
@@ -13,8 +13,6 @@ Doing my bit to make NYC more accessible to the masses ... a map containing gran
 	2. `Bike routes`: ride somewhere!
 	3. `Public benches`: sit down and shu ... take a break from walking around all day.
 		- Click on a triangle symbol to see the address and cross streets of the location, and whether the bench has a back or not. It's nice to lean back sometimes.
-	4. `Neighborhoods`: find out what neighborhood you're in.
-		- When the `Neighborhoods` layer is active, hovering over a neighborhood highlights it and prints its name in a popup box in the bottom.
 - Popup information: when you click on some random symbols (subway station, schools, landmark, etc.), a dialog box appears and shows basic information. 
 	- It's not particularly useful right now, but it will be after adding Twitter and FourSquare data.
 - Switchable map style: click the radio buttons up top to switch to a different map style.

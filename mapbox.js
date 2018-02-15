@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamRiMHp5NWMwMzdhMzNwbGFuOGdseWowIn0.Bbgi_5xpZpjBjYL8bZ__EA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
+    style: 'mapbox://styles/chanversus/cjd5jjweu68u92rmkc112hkpb',
     center: [-74.0018, 40.7243],
     zoom: 10
 });
@@ -209,16 +209,16 @@ function setPopups() {
 // Sets buttons for switching between map styles
 function setStyleSwitch() {
     const STYLES = {
+        'north-star': 'mapbox://styles/chanversus/cjd5jjweu68u92rmkc112hkpb',
+        'light': 'mapbox://styles/mapbox/light-v9',
         'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
         'night': 'mapbox://styles/mapbox/navigation-preview-night-v2',
         'streets': 'mapbox://styles/mapbox/streets-v10',
-        'light': 'mapbox://styles/mapbox/light-v9',
         'dark': 'mapbox://styles/mapbox/dark-v9',
         'scenic': 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
         'standard': 'mapbox://styles/chanversus/cjcwh8yij07bu2smyb1v45iza',
         'navigate': 'mapbox://styles/chanversus/cjcwu66ti0jt72rlhflrogw4o',
         'nav-night': 'mapbox://styles/mapbox/navigation-guidance-night-v2',
-        'north-star': 'mapbox://styles/chanversus/cjd5jjweu68u92rmkc112hkpb',
         'satellite': 'mapbox://styles/mapbox/satellite-v9',
         'satellite-streets': 'mapbox://styles/mapbox/satellite-streets-v10',
     }

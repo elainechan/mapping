@@ -1,7 +1,14 @@
 body { 
     margin:0;
     padding:0;
-    font-family: 'courier', monospace;
+    font-family: 'Roboto Mono', monospace;
+}
+h1 {
+    font-family: 'Roboto Mono', monospace;
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    z-index: 1500000!important;
 }
 #map { 
   position:absolute;
@@ -18,6 +25,15 @@ html, body {
 #map canvas {
     cursor: crosshair;
 }
+#logo-container {
+    position: absolute;
+    top: 60px;
+    left: 15px;
+}
+#logo {
+    height: 100%;
+    width: 100%;
+}
 #neighborhood-label {
     position: absolute;
     bottom: 0;
@@ -30,6 +46,16 @@ html, body {
     width: 400px;
     height: 40px;
 }
+
+#hideshow {
+    width: 140px;
+    z-index: 5000!important;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Roboto Mono', monospace;
+}
+
 #style-menu {
     position: absolute;
     top: 0;
@@ -84,6 +110,25 @@ html, body {
     #toggle-features a.active:hover {
         background: #3074a4;
     }
+
+#modal-container {
+  position: absolute;
+  z-index: 1999;
+  top: 200px;
+  right: 10px;
+  bottom: 20px;
+}
+.modal-content {
+  z-index: 2000;
+  font-family: 'Roboto Mono', monospace;
+}
+.btn-info {
+  background-color: #2d3b45!important;
+  font-family: 'Roboto Mono', monospace;
+  right: 10px;
+  bottom: 10px!important;
+  position: absolute;
+}
 @media screen and (max-width: 600px) {
     #logo {
       visibility: hidden;
