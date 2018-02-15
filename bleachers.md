@@ -118,3 +118,23 @@ function getCityData(){
 }
 getCityData();
 ```
+- Map style options
+```javascript
+        'dark': 'mapbox://styles/mapbox/dark-v9',
+        'night': 'mapbox://styles/mapbox/navigation-preview-night-v2',
+        'nav-night': 'mapbox://styles/mapbox/navigation-guidance-night-v2',
+        'satellite': 'mapbox://styles/mapbox/satellite-v9',
+        'satellite-streets': 'mapbox://styles/mapbox/satellite-streets-v10',
+```
+```html
+  <input id='night' type='radio' name='rtoggle' value='night'>
+  <label for='night'>night</label>
+  <input id='dark' type='radio' name='rtoggle' value='dark' >
+  <label for='dark'>dark</label>
+  <input id='nav-night' type='radio' name='rtoggle' value='nav-night'>
+  <label for='nav-night'>navigate night</label>
+  <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+  <label for='satellite'>satellite</label>
+  <input id='satellite-streets' type='radio' name='rtoggle' value='satellite-streets'>
+  <label for='satellite-streets'>satellite streets</label>
+```

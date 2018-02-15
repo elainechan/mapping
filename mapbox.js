@@ -210,17 +210,13 @@ function setPopups() {
 function setStyleSwitch() {
     const STYLES = {
         'north-star': 'mapbox://styles/chanversus/cjd5jjweu68u92rmkc112hkpb',
+        'ice-cream': 'mapbox://styles/chanversus/cjd5rpbad6grc2rp46esjmy3o',
         'light': 'mapbox://styles/mapbox/light-v9',
-        'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
-        'night': 'mapbox://styles/mapbox/navigation-preview-night-v2',
-        'streets': 'mapbox://styles/mapbox/streets-v10',
-        'dark': 'mapbox://styles/mapbox/dark-v9',
         'scenic': 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
+        'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
+        'streets': 'mapbox://styles/mapbox/streets-v10',
         'standard': 'mapbox://styles/chanversus/cjcwh8yij07bu2smyb1v45iza',
-        'navigate': 'mapbox://styles/chanversus/cjcwu66ti0jt72rlhflrogw4o',
-        'nav-night': 'mapbox://styles/mapbox/navigation-guidance-night-v2',
-        'satellite': 'mapbox://styles/mapbox/satellite-v9',
-        'satellite-streets': 'mapbox://styles/mapbox/satellite-streets-v10',
+        'navigate': 'mapbox://styles/chanversus/cjcwu66ti0jt72rlhflrogw4o'
     }
     let layerList = document.getElementById('style-menu');
     let inputs = layerList.getElementsByTagName('input');
