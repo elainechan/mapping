@@ -1,4 +1,4 @@
-![Bike logo](./assets/bike-logo-white.png)
+![Bike logo](./assets/bike-logo.png)
 # Bike Me: NYC Map for Cyclists and Pedestrians
 In hope of making NYC more accessible to cyclists and pedestrians, this map provides rare granular local information for biking and walking the city, using NYC Open Data. 
 
