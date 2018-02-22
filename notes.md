@@ -1,10 +1,14 @@
 # Project Notes
 
-## Backend Refactor
-- Consider AWS with Nginx
-	- [Hackernoon tutorial part 1](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-1-d67367ac5171)
-	- [Hackernoon tutorial part 2](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1)
-	- [Nginx AWS setup instructions](https://www.nginx.com/blog/setting-up-nginx/)
+## Optimization
+- Build custom tilesets with data
+	- [Caching Maps and Vector Tile Layers: Best Practices - Esri](http://proceedings.esri.com/library/userconf/proc17/tech-workshops/tw_533-434.pdf)
+- Cache
+
+### AWS with Nginx
+- [Hackernoon tutorial part 1](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-1-d67367ac171)
+- [Hackernoon tutorial part 2](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea958a1)
+- [Nginx AWS setup instructions](https://www.nginx.com/blog/setting-up-nginx/)
 - Caching with Nginx
 	- [Understanding Nginx HTTP Proxying, Load Balancing, Buffering, and Caching](https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching)
 	- [Caching explanation](https://www.nginx.com/resources/glossary/caching/)
@@ -12,9 +16,14 @@
 	- [Nginx guide to caching](https://www.nginx.com/blog/nginx-caching-guide/)
 	- [Nginx content caching](https://www.nginx.com/resources/admin-guide/content-caching/)
 	- [Reverse proxy with caching](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/)
+- Background article: [nginx model deep dive](http://www.aosabook.org/en/nginx.html)
+
+### Service Worker
+- [GitHub discussion thread](https://github.com/mapbox/mapbox-gl-js/issues/4326)
+- [Mapbox mobile offline mode](https://www.mapbox.com/help/mobile-offline/#requirements)
 
 ## TODO
-- [ ] Refactor backend
+- [ ] Refactor backend to optimize load
 - [x] Retain feature layer visibility state when switching map style.
 - [x] Make UI responsive for mobile.
 - [x] Drop-down menu for full list of map styles.
