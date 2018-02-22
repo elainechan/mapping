@@ -1,5 +1,20 @@
 # Project Notes
+
+## Backend Refactor
+- Consider AWS with Nginx
+	- [Hackernoon tutorial part 1](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-1-d67367ac5171)
+	- [Hackernoon tutorial part 2](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1)
+	- [Nginx AWS setup instructions](https://www.nginx.com/blog/setting-up-nginx/)
+- Caching with Nginx
+	- [Understanding Nginx HTTP Proxying, Load Balancing, Buffering, and Caching](https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching)
+	- [Caching explanation](https://www.nginx.com/resources/glossary/caching/)
+	- [Reverse proxy explanation](https://www.nginx.com/resources/glossary/reverse-proxy/)
+	- [Nginx guide to caching](https://www.nginx.com/blog/nginx-caching-guide/)
+	- [Nginx content caching](https://www.nginx.com/resources/admin-guide/content-caching/)
+	- [Reverse proxy with caching](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/)
+
 ## TODO
+- [ ] Refactor backend
 - [x] Retain feature layer visibility state when switching map style.
 - [x] Make UI responsive for mobile.
 - [x] Drop-down menu for full list of map styles.

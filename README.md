@@ -13,8 +13,8 @@ In hope of making NYC more accessible to cyclists and pedestrians, this map prov
 	2. `Bike routes`: ride somewhere!
 	3. `Public benches`: sit down and shu ... take a break from walking around all day.
 		- Click on a triangle symbol to see the address and cross streets of the location, and whether the bench has a back or not. It's nice to lean back sometimes.
-- Popup information: when you click on some random symbols (subway station, schools, landmark, etc.), a dialog box appears and shows basic information. 
-	- It's not particularly useful right now, but it will be after adding Twitter and FourSquare data.
+- Popup information: when you click on symbols (subway station, schools, landmark, etc.), a dialog box appears and shows basic information. 
+	- It's not particularly useful right now, but it could be after adding Twitter and FourSquare data.
 - Switchable map style: click the radio buttons up top to switch to a different map style.
 	- Default: the Navigation Preview Day theme, an elegant and clean navigation map layer.
 	- Streets: the popular Mapbox Streets style with a good amount of navigation details.
