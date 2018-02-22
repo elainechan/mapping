@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamRiMHp5NWMwMzdhMzNwbGFuOGdseWowIn0.Bbgi_5xpZpjBjYL8bZ__EA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/chanversus/cjd5jjweu68u92rmkc112hkpb',
+    style: 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
     center: [-74.0018, 40.7243],
     zoom: 10
 });
@@ -22,16 +22,6 @@ function addSources() {
 }
 // Adds featured layers
 function addLayers() {
-    var layers = map.getStyle().layers;
-    // Find the index of the first symbol layer in the map style
-    // Ensure featured icons display visibly above other layers
-    var firstSymbolId;
-    for (let i = 0; i < layers.length; i += 1) {
-        if (layers[i].type === 'symbol') {
-            firstSymbolId = layers[i].id;
-            break;
-        }
-    }
     map.addLayer({
         'id': 'bike-routes',
         'type': 'line',
@@ -63,7 +53,6 @@ function addLayers() {
         }
     });
 }
-
 const LAYERS = [
     {
         'name': 'bike-routes',
@@ -124,7 +113,7 @@ function setHandleToggleButtonClick() {
         link.onclick = function (e) {
             e.preventDefault();
             e.stopPropagation();
-            var clickedName = this.textContent.replace(/ /, '-'); // Re-add hyphen tomanipulate
+            var clickedName = this.textContent.replace(/ /, '-'); // Re-add hyphen to manipulate
             let chosenLayer = LAYERS.filter((obj) => {
                 return obj.name === clickedName;
             }); // Toggle features
