@@ -7,32 +7,13 @@ var map = new mapboxgl.Map({
 });
 // Adds map sources from Mapbox API
 function addSources() {
-    map.addSource('bike-routes', {
-        type: 'vector',
-        url: 'mapbox://chanversus.b4y2ijie'
-    });
     map.addSource('bike-parking', {
         type: 'vector',
         url: 'mapbox://chanversus.40louhe4'
     });
-    map.addSource('public-benches', {
-        type: 'vector',
-        url: 'mapbox://chanversus.bal31raj'
-    });
 }
 // Adds featured layers
 function addLayers() {
-    map.addLayer({
-        'id': 'bike-routes',
-        'type': 'line',
-        'source': 'bike-routes',
-        'source-layer': 'nyc-bike-routes-2e7vkb',
-        'paint': {
-            'line-color': '#0000ff',
-            'line-width': 3.5,
-            'line-opacity': 1
-        },
-    });
     map.addLayer({
         'id': 'bike-parking',
         'type': 'symbol',
@@ -43,28 +24,11 @@ function addLayers() {
             'icon-size': 1.5
         }
     });
-    map.addLayer({
-        'id': 'public-benches',
-        'type': 'symbol',
-        'source': 'public-benches',
-        'source-layer': '2016-citybench-401mrx',
-        'layout': {
-            'icon-image': 'triangle-11',
-        }
-    });
 }
 const LAYERS = [
     {
-        'name': 'bike-routes',
-        'items': ['bike-routes']
-    },
-    {
         'name':'bike-parking',
         'items': ['bike-parking']
-    },
-    {
-        'name': 'public-benches',
-        'items': ['public-benches']
     }
 ];
 function hideLayer(layerName) {
