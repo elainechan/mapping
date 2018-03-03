@@ -5,6 +5,10 @@
 	- [Caching Maps and Vector Tile Layers: Best Practices - Esri](http://proceedings.esri.com/library/userconf/proc17/tech-workshops/tw_533-434.pdf)
 - Cache
 
+### Memcached
+- [memcached](https://memcached.org/)
+- [sidenote: memcached DDoS attack](https://blog.cloudflare.com/memcrashed-major-amplification-attacks-from-port-11211/)
+
 ### AWS with Nginx
 - [Hackernoon tutorial part 1](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-1-d67367ac171)
 - [Hackernoon tutorial part 2](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea958a1)

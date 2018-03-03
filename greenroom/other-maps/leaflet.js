@@ -5,9 +5,9 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery© <a href="http://mapbox.com">Mapbox</a>',
    maxZoom: 18,
    id: 'mapbox.streets',
-accessToken:'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamE3cmJxdDMxMTU5MzJsbDdlM2d5OGFqIn0.Od7n9c17-jouVVYbaMWOsg'
+accessToken:'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamRiMHp5NWMwMzdhMzNwbGFuOGdseWowIn0.Bbgi_5xpZpjBjYL8bZ__EA'
 }).addTo(mymap);
-/*
+
 var district_boundary = new L.geoJson();
 district_boundary.addTo(mymap);
 $.ajax({
@@ -23,7 +23,7 @@ $.ajax({
 }).catch(function(error) {
     console.error(error.stack);
   });
-*/
+
 var district_boundary = new L.geoJson();
 district_boundary.addTo(mymap);
 var xmlhttp = new XMLHttpRequest();
