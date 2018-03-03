@@ -25,8 +25,10 @@ Doing my bit to make NYC more accessible to the masses ... a map containing gran
 	- Navigate: a no-nonsense navigation map that highlights roadways.
 	- North Star: a nautical navigation map with ocean depth contours; looks better far out than zoomed in.
 ## Usage
-Click on a symbol to see more information about it.
-![Popup box](./assets/popup.png)
+Click on a bike symbol to see the address of the bike parking and the number of racks installed.
+![Bike popup](./assets/bike-popup.png)
+Click on a triangle symbol to see the address and cross streets of the bench, and whether it has a back or not!
+![Bench popup](./assets/bench-popup.png)
 Press the buttons on the upper left corner to show or hide features.
 ![Toggle on](./assets/toggle-on.png)
 ![Toggle off](./assets/toggle-off.png)

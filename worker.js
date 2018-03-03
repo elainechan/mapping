@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$('#hideshow').on('click', function(event) {        
 		$('#style-menu').toggle('hide');
 		$('#toggle-features').toggle('hide');
-		$('#modal-container').toggle('hide');
+		$('#modal-button').toggle('hide');
 		$('#logo').toggle('hide');
 		$('h1').toggle('hide');
 		if ($('#hideshow').hasClass('showing')) {
@@ -15,5 +15,11 @@ $(document).ready(function(){
 			$('#hideshow').addClass('showing');
 			$('#hideshow').attr('value', 'hide')
 		}
+	});
+});
+$(document).ready(function() {
+	$('#modal-button').on('click', function(event) {
+		if ($())
+
 	});
 });
