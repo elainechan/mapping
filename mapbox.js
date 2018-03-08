@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhbnZlcnN1cyIsImEiOiJjamRiMHp5NWMwMzdhMzNwbGFuOGdseWowIn0.Bbgi_5xpZpjBjYL8bZ__EA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
+    style: 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
     center: [-74.0018, 40.7243],
     zoom: 10
 });
@@ -19,24 +19,9 @@ function addSources() {
         type: 'vector',
         url: 'mapbox://chanversus.bal31raj'
     });
-    map.addSource('neighborhoods', {
-        type: 'vector',
-        //url: 'mapbox://chanversus.3eevjveq'
-        url: 'mapbox://chanversus.djorti0h'
-    });
 }
 // Adds featured layers
 function addLayers() {
-    var layers = map.getStyle().layers;
-    // Find the index of the first symbol layer in the map style
-    // Ensure featured icons display visibly above other layers
-    var firstSymbolId;
-    for (let i = 0; i < layers.length; i += 1) {
-        if (layers[i].type === 'symbol') {
-            firstSymbolId = layers[i].id;
-            break;
-        }
-    }
     map.addLayer({
         'id': 'bike-routes',
         'type': 'line',
@@ -67,40 +52,7 @@ function addLayers() {
             'icon-image': 'triangle-11',
         }
     });
-    map.addLayer({
-        'id': 'neighborhood-boundaries',
-        'type': 'line',
-        'source': 'neighborhoods',
-        //'source-layer': 'Neighborhood_Tabulation_Areas-095e1p',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'line-color': '#000000',
-            'line-width': 1.75
-        }
-    }, firstSymbolId);
-    map.addLayer({
-        'id': 'neighborhood-fills',
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'fill-color': '#dc7633',
-            'fill-opacity': 0.1
-        }
-    },firstSymbolId);
-    map.addLayer({
-        'id': 'neighborhood-fills-hover',
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'source-layer': 'ZillowNeighborhoods-NY-6auhot',
-        'paint': {
-            'fill-color': '#e59866',
-            'fill-opacity': 0.4
-        },
-        "filter": ["==", "Name", ""]
-    },firstSymbolId);
 }
-
 const LAYERS = [
     {
         'name': 'bike-routes',
@@ -109,10 +61,6 @@ const LAYERS = [
     {
         'name':'bike-parking',
         'items': ['bike-parking']
-    },
-    {
-        'name': 'neighborhoods',
-        'items': ['neighborhood-boundaries', 'neighborhood-fills', 'neighborhood-fills-hover'],
     },
     {
         'name': 'public-benches',
@@ -165,7 +113,7 @@ function setHandleToggleButtonClick() {
         link.onclick = function (e) {
             e.preventDefault();
             e.stopPropagation();
-            var clickedName = this.textContent.replace(/ /, '-'); // Re-add hyphen tomanipulate
+            var clickedName = this.textContent.replace(/ /, '-'); // Re-add hyphen to manipulate
             let chosenLayer = LAYERS.filter((obj) => {
                 return obj.name === clickedName;
             }); // Toggle features
@@ -187,23 +135,6 @@ function setLayerToggling() {
         retainToggleLayersState();
     }
     setHandleToggleButtonClick();
-}
-
-// Sets box that highlights area and shows neighborhood information on hover
-function setNeighborhoodHighlight() {
-    if (document.getElementById('neighborhoods').className === 'active') {
-        map.on("mousemove", "neighborhood-fills", function(e) {
-            let features = map.queryRenderedFeatures(e.point);
-            map.setFilter("neighborhood-fills-hover", ["==", "Name", e.features[0].properties.Name]);
-            document.getElementById('neighborhood-label').removeAttribute('hidden');
-            document.getElementById('neighborhood-label').innerHTML = JSON.stringify(e.features[0].properties.Name, null, 2)
-        });
-        // Reset neighborhood-fills-hover layer's filter when the mouse leaves the layer.
-        map.on("mouseleave", "neighborhood-fills", () => {
-            map.setFilter("neighborhood-fills-hover", ["==", "name", ""]);
-            document.getElementById('neighborhood-label').setAttribute('hidden', true);
-        });
-    }
 }
 // Sets popup box that shows location information on click
 function setPopups() {
@@ -267,18 +198,14 @@ function setPopups() {
 // Sets buttons for switching between map styles
 function setStyleSwitch() {
     const STYLES = {
-        'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
-        'night': 'mapbox://styles/mapbox/navigation-preview-night-v2',
-        'streets': 'mapbox://styles/mapbox/streets-v10',
-        'light': 'mapbox://styles/mapbox/light-v9',
-        'dark': 'mapbox://styles/mapbox/dark-v9',
-        'scenic': 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
-        'standard': 'mapbox://styles/chanversus/cjcwh8yij07bu2smyb1v45iza',
-        'navigate': 'mapbox://styles/chanversus/cjcwu66ti0jt72rlhflrogw4o',
-        'nav-night': 'mapbox://styles/mapbox/navigation-guidance-night-v2',
         'north-star': 'mapbox://styles/chanversus/cjd5jjweu68u92rmkc112hkpb',
-        'satellite': 'mapbox://styles/mapbox/satellite-v9',
-        'satellite-streets': 'mapbox://styles/mapbox/satellite-streets-v10',
+        'ice-cream': 'mapbox://styles/chanversus/cjd5rpbad6grc2rp46esjmy3o',
+        'light': 'mapbox://styles/mapbox/light-v9',
+        'scenic': 'mapbox://styles/chanversus/cjd4xt7zr5on82rmkz4l10n2r',
+        'day': 'mapbox://styles/chanversus/cjcwu6mu80jrv2rpgqf1myynv',
+        'streets': 'mapbox://styles/mapbox/streets-v10',
+        'standard': 'mapbox://styles/chanversus/cjcwh8yij07bu2smyb1v45iza',
+        'navigate': 'mapbox://styles/chanversus/cjcwu66ti0jt72rlhflrogw4o'
     }
     let layerList = document.getElementById('style-menu');
     let inputs = layerList.getElementsByTagName('input');
@@ -292,7 +219,6 @@ map.on('style.load', () => {
     addSources();
     addLayers();
     setLayerToggling();
-    setNeighborhoodHighlight();
     setPopups();
     setStyleSwitch();
 });
